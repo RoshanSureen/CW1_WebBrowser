@@ -18,27 +18,51 @@ namespace CW1_WebBrowser
             InitializeComponent();
         }
 
+        /// <summary>
+        /// This function is used to exit from WinForm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// This function tells information about the web browser
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("This web browser is made by Roshan Sureen!");
         }
 
+        /// <summary>
+        /// This function runs when the search btn is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void search_Btn_Click(object sender, EventArgs e)
         {
+            // the url typed by user in the textbox is stored in var web_URL
             string web_URL = url_textBox.Text;
+
+            // function call
             Get_Request(web_URL);
         }
-
+        
+        /// <summary>
+        /// This function ensures that the http request and response run on their own thread
+        /// </summary>
+        /// <param name="url"></param>
         async void Get_Request(string url)
         {
+            // using() is used to dispose the client object when it goes out of scope
             using (HttpClient client = new HttpClient())
             {
-
+                
+                // the client will wait for the request to be completed and then store the response in object 'res'
                 using (HttpResponseMessage res = await client.GetAsync(url))
                 {
                     using (HttpContent content = res.Content)

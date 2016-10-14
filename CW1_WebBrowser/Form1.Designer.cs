@@ -154,6 +154,7 @@
             this.url_textBox.Size = new System.Drawing.Size(864, 26);
             this.url_textBox.TabIndex = 1;
             this.url_textBox.Text = "http://";
+            this.url_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.url_textBox_KeyPress);
             // 
             // back_btn
             // 

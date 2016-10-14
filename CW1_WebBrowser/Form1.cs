@@ -45,13 +45,21 @@ namespace CW1_WebBrowser
         /// <param name="e"></param>
         private void search_Btn_Click(object sender, EventArgs e)
         {
+            NavigateToPage();
+        }
+
+        /// <summary>
+        /// This is the core function that will perform request and response calls
+        /// </summary>
+        private void NavigateToPage()
+        {
             // the url typed by user in the textbox is stored in var web_URL
             string web_URL = url_textBox.Text;
 
             // function call
             Get_Request(web_URL);
         }
-        
+
         /// <summary>
         /// This function ensures that the http request and response run on their own thread
         /// </summary>
@@ -71,6 +79,20 @@ namespace CW1_WebBrowser
                         richTextBox.Text = webContent;
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// This function will run when the enter key is pushed and released
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void url_textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //if the keyStroke was enter then Get_Request()
+            if (e.KeyChar == (char)ConsoleKey.Enter)
+            {
+                NavigateToPage();
             }
         }
     }

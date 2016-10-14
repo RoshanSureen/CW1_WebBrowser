@@ -34,7 +34,7 @@ namespace CW1_WebBrowser
             
         }
 
-        static async void Get_Request(string url)
+        async void Get_Request(string url)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -43,7 +43,8 @@ namespace CW1_WebBrowser
                 {
                     using (HttpContent content = res.Content)
                     {
-                        
+                        string webContent = await content.ReadAsStringAsync();
+                        richTextBox.Text = webContent;
                     }
                 }
             }

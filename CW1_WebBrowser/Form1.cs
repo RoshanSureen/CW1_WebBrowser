@@ -34,12 +34,18 @@ namespace CW1_WebBrowser
             
         }
 
-        async static void Get_Request(string url)
+        static async void Get_Request(string url)
         {
             using (HttpClient client = new HttpClient())
             {
 
-                HttpResponseMessage res = await client.GetAsync("http://www.google.com");
+                using (HttpResponseMessage res = await client.GetAsync(url))
+                {
+                    using (HttpContent content = res.Content)
+                    {
+                        
+                    }
+                }
             }
         }
     }

@@ -135,6 +135,8 @@
             // 
             // url_textBox
             // 
+            this.url_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.url_textBox.Location = new System.Drawing.Point(220, 36);
             this.url_textBox.Name = "url_textBox";
             this.url_textBox.Size = new System.Drawing.Size(965, 26);
@@ -170,6 +172,7 @@
             // 
             // search_Btn
             // 
+            this.search_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.search_Btn.Location = new System.Drawing.Point(1191, 36);
             this.search_Btn.Name = "search_Btn";
             this.search_Btn.Size = new System.Drawing.Size(75, 35);

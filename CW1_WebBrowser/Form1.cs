@@ -30,11 +30,17 @@ namespace CW1_WebBrowser
 
         private void search_Btn_Click(object sender, EventArgs e)
         {
+            
+            
+        }
+
+        async static void Get_Request(string url)
+        {
             using (HttpClient client = new HttpClient())
             {
-                
+
+                HttpResponseMessage res = await client.GetAsync("http://www.google.com");
             }
-            
         }
     }
 }

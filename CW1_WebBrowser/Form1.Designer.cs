@@ -39,6 +39,11 @@
             this.favToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bookmarkThisPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.url_textBox = new System.Windows.Forms.TextBox();
+            this.back_btn = new System.Windows.Forms.Button();
+            this.nextPage_btn = new System.Windows.Forms.Button();
+            this.home_Btn = new System.Windows.Forms.Button();
+            this.search_Btn = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,11 +130,60 @@
             this.bookmarkThisPageToolStripMenuItem.Size = new System.Drawing.Size(256, 30);
             this.bookmarkThisPageToolStripMenuItem.Text = "Bookmark this page";
             // 
+            // url_textBox
+            // 
+            this.url_textBox.Location = new System.Drawing.Point(220, 36);
+            this.url_textBox.Name = "url_textBox";
+            this.url_textBox.Size = new System.Drawing.Size(965, 26);
+            this.url_textBox.TabIndex = 1;
+            this.url_textBox.Text = "http://";
+            // 
+            // back_btn
+            // 
+            this.back_btn.Location = new System.Drawing.Point(12, 36);
+            this.back_btn.Name = "back_btn";
+            this.back_btn.Size = new System.Drawing.Size(60, 35);
+            this.back_btn.TabIndex = 2;
+            this.back_btn.Text = "back";
+            this.back_btn.UseVisualStyleBackColor = true;
+            // 
+            // nextPage_btn
+            // 
+            this.nextPage_btn.Location = new System.Drawing.Point(78, 36);
+            this.nextPage_btn.Name = "nextPage_btn";
+            this.nextPage_btn.Size = new System.Drawing.Size(60, 35);
+            this.nextPage_btn.TabIndex = 3;
+            this.nextPage_btn.Text = "Next";
+            this.nextPage_btn.UseVisualStyleBackColor = true;
+            // 
+            // home_Btn
+            // 
+            this.home_Btn.Location = new System.Drawing.Point(144, 36);
+            this.home_Btn.Name = "home_Btn";
+            this.home_Btn.Size = new System.Drawing.Size(70, 35);
+            this.home_Btn.TabIndex = 4;
+            this.home_Btn.Text = "Home";
+            this.home_Btn.UseVisualStyleBackColor = true;
+            // 
+            // search_Btn
+            // 
+            this.search_Btn.Location = new System.Drawing.Point(1191, 36);
+            this.search_Btn.Name = "search_Btn";
+            this.search_Btn.Size = new System.Drawing.Size(75, 35);
+            this.search_Btn.TabIndex = 5;
+            this.search_Btn.Text = "Search";
+            this.search_Btn.UseVisualStyleBackColor = true;
+            // 
             // HW_Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 844);
+            this.Controls.Add(this.search_Btn);
+            this.Controls.Add(this.home_Btn);
+            this.Controls.Add(this.nextPage_btn);
+            this.Controls.Add(this.back_btn);
+            this.Controls.Add(this.url_textBox);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "HW_Browser";
@@ -154,6 +208,11 @@
         private System.Windows.Forms.ToolStripMenuItem favToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bookmarkThisPageToolStripMenuItem;
+        private System.Windows.Forms.TextBox url_textBox;
+        private System.Windows.Forms.Button back_btn;
+        private System.Windows.Forms.Button nextPage_btn;
+        private System.Windows.Forms.Button home_Btn;
+        private System.Windows.Forms.Button search_Btn;
     }
 }
 

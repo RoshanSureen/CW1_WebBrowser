@@ -191,6 +191,7 @@
             this.search_Btn.TabIndex = 5;
             this.search_Btn.Text = "Search";
             this.search_Btn.UseVisualStyleBackColor = true;
+            this.search_Btn.Click += new System.EventHandler(this.search_Btn_Click);
             // 
             // richTextBox
             // 

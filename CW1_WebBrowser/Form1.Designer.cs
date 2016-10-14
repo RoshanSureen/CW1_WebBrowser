@@ -47,6 +47,7 @@
             this.search_Btn = new System.Windows.Forms.Button();
             this.richTextBox = new System.Windows.Forms.RichTextBox();
             this.newTab_Btn = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -212,11 +213,20 @@
             this.newTab_Btn.Text = "New Tab";
             this.newTab_Btn.UseVisualStyleBackColor = true;
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.progressBar1.Location = new System.Drawing.Point(12, 817);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(354, 23);
+            this.progressBar1.TabIndex = 9;
+            // 
             // HW_Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 844);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.newTab_Btn);
             this.Controls.Add(this.richTextBox);
             this.Controls.Add(this.search_Btn);
@@ -256,6 +266,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.RichTextBox richTextBox;
         private System.Windows.Forms.Button newTab_Btn;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

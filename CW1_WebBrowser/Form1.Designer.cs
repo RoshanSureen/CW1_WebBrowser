@@ -39,15 +39,16 @@
             this.favToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bookmarkThisPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.url_textBox = new System.Windows.Forms.TextBox();
             this.back_btn = new System.Windows.Forms.Button();
             this.nextPage_btn = new System.Windows.Forms.Button();
             this.home_Btn = new System.Windows.Forms.Button();
             this.search_Btn = new System.Windows.Forms.Button();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.richTextBox = new System.Windows.Forms.RichTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.newTab_Btn = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -79,19 +80,19 @@
             // newWindowToolStripMenuItem
             // 
             this.newWindowToolStripMenuItem.Name = "newWindowToolStripMenuItem";
-            this.newWindowToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+            this.newWindowToolStripMenuItem.Size = new System.Drawing.Size(203, 30);
             this.newWindowToolStripMenuItem.Text = "New Window";
             // 
             // goIncognitoToolStripMenuItem
             // 
             this.goIncognitoToolStripMenuItem.Name = "goIncognitoToolStripMenuItem";
-            this.goIncognitoToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+            this.goIncognitoToolStripMenuItem.Size = new System.Drawing.Size(203, 30);
             this.goIncognitoToolStripMenuItem.Text = "Go Incognito";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(203, 30);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -107,13 +108,13 @@
             // viewHistoryToolStripMenuItem
             // 
             this.viewHistoryToolStripMenuItem.Name = "viewHistoryToolStripMenuItem";
-            this.viewHistoryToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+            this.viewHistoryToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
             this.viewHistoryToolStripMenuItem.Text = "View History";
             // 
             // deleteHistoryToolStripMenuItem
             // 
             this.deleteHistoryToolStripMenuItem.Name = "deleteHistoryToolStripMenuItem";
-            this.deleteHistoryToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+            this.deleteHistoryToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
             this.deleteHistoryToolStripMenuItem.Text = "Delete History";
             // 
             // favToolStripMenuItem
@@ -137,13 +138,20 @@
             this.bookmarkThisPageToolStripMenuItem.Size = new System.Drawing.Size(256, 30);
             this.bookmarkThisPageToolStripMenuItem.Text = "Bookmark this page";
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // url_textBox
             // 
             this.url_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.url_textBox.Location = new System.Drawing.Point(220, 36);
             this.url_textBox.Name = "url_textBox";
-            this.url_textBox.Size = new System.Drawing.Size(965, 26);
+            this.url_textBox.Size = new System.Drawing.Size(864, 26);
             this.url_textBox.TabIndex = 1;
             this.url_textBox.Text = "http://";
             // 
@@ -177,19 +185,12 @@
             // search_Btn
             // 
             this.search_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.search_Btn.Location = new System.Drawing.Point(1191, 36);
+            this.search_Btn.Location = new System.Drawing.Point(1090, 36);
             this.search_Btn.Name = "search_Btn";
             this.search_Btn.Size = new System.Drawing.Size(75, 35);
             this.search_Btn.TabIndex = 5;
             this.search_Btn.Text = "Search";
             this.search_Btn.UseVisualStyleBackColor = true;
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // richTextBox
             // 
@@ -218,11 +219,22 @@
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
             // 
+            // newTab_Btn
+            // 
+            this.newTab_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.newTab_Btn.Location = new System.Drawing.Point(1171, 36);
+            this.newTab_Btn.Name = "newTab_Btn";
+            this.newTab_Btn.Size = new System.Drawing.Size(95, 35);
+            this.newTab_Btn.TabIndex = 8;
+            this.newTab_Btn.Text = "New Tab";
+            this.newTab_Btn.UseVisualStyleBackColor = true;
+            // 
             // HW_Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 844);
+            this.Controls.Add(this.newTab_Btn);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.richTextBox);
             this.Controls.Add(this.search_Btn);
@@ -265,6 +277,7 @@
         private System.Windows.Forms.RichTextBox richTextBox;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.Button newTab_Btn;
     }
 }
 

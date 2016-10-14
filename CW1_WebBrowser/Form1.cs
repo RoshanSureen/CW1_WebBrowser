@@ -30,8 +30,8 @@ namespace CW1_WebBrowser
 
         private void search_Btn_Click(object sender, EventArgs e)
         {
-            
-            
+            string web_URL = url_textBox.Text;
+            Get_Request(web_URL);
         }
 
         async void Get_Request(string url)

@@ -21,5 +21,10 @@ namespace CW1_WebBrowser
         {
             this.Close();
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This web browser is made by Roshan Sureen!");
+        }
     }
 }

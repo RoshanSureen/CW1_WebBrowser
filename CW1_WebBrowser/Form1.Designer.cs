@@ -44,6 +44,7 @@
             this.nextPage_btn = new System.Windows.Forms.Button();
             this.home_Btn = new System.Windows.Forms.Button();
             this.search_Btn = new System.Windows.Forms.Button();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +54,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.historyToolStripMenuItem,
-            this.favToolStripMenuItem});
+            this.favToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1278, 33);
@@ -175,6 +177,13 @@
             this.search_Btn.Text = "Search";
             this.search_Btn.UseVisualStyleBackColor = true;
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // HW_Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -214,6 +223,7 @@
         private System.Windows.Forms.Button nextPage_btn;
         private System.Windows.Forms.Button home_Btn;
         private System.Windows.Forms.Button search_Btn;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

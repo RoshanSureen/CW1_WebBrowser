@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CW1_WebBrowser
 {
-    public partial class Form1 : Form
+    public partial class HW_Browser : Form
     {
-        public Form1()
+        public HW_Browser()
         {
             InitializeComponent();
         }

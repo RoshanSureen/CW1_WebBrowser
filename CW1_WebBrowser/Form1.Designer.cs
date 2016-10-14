@@ -1,6 +1,6 @@
 ﻿namespace CW1_WebBrowser
 {
-    partial class Form1
+    partial class HW_Browser
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // HW_Browser
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(1278, 844);
+            this.Name = "HW_Browser";
+            this.Text = "HW_Browser";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -239,6 +239,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "HW_Browser";
             this.Text = "HW_Browser";
+            this.Activated += new System.EventHandler(this.HW_Browser_Activated);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

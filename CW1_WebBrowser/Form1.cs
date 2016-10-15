@@ -74,6 +74,7 @@ namespace CW1_WebBrowser
                 // the client will wait for the request to be completed and then store the response in object 'res'
                 using (HttpResponseMessage res = await client.GetAsync(url))
                 {
+                    // try and catch is used to display httpResponse error messages
                     try
                     {
                         using (HttpContent content = res.Content)
@@ -107,6 +108,11 @@ namespace CW1_WebBrowser
         }
 
         private void home_Btn_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void HW_Browser_Activated(object sender, EventArgs e)
         {
 
         }

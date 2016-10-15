@@ -70,24 +70,24 @@ namespace CW1_WebBrowser
             // using() is used to dispose the client object when it goes out of scope
             using (HttpClient client = new HttpClient())
             {
-                
+
                 // the client will wait for the request to be completed and then store the response in object 'res'
                 using (HttpResponseMessage res = await client.GetAsync(url))
                 {
-                    if (res.StatusCode == HttpStatusCode.OK)
+                    try
                     {
                         using (HttpContent content = res.Content)
                         {
                             string webContent = await content.ReadAsStringAsync();
                             richTextBox.Text = webContent;
-                            
+
                         }
                     }
-                    //else if (res.StatusCode == HttpStatusCode.BadRequest)
-                    //{
-                    //    richTextBox.Text = 
-                    //}
-                    
+                    catch (Exception e)
+                    {
+                        richTextBox.Text = e.Message;
+                        
+                    }
                 }
             }
         }

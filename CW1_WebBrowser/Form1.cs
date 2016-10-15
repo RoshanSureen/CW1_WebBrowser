@@ -17,7 +17,7 @@ namespace CW1_WebBrowser
 {
     public partial class HW_Browser : Form
     {
-        
+        private System.Timers.Timer time;
 
         public HW_Browser()
         {
@@ -115,6 +115,11 @@ namespace CW1_WebBrowser
             }
         }
 
+        /// <summary>
+        /// This function runs when the user wants to set a home page and clicks Home btn
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void home_Btn_Click(object sender, EventArgs e)
         {
             string homePage = url_textBox.Text;
@@ -122,6 +127,11 @@ namespace CW1_WebBrowser
             MessageBox.Show("Your home page is set to this website!");
         }
 
+        /// <summary>
+        /// Home page set by user is shown when the browser starts
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HW_Browser_Activated(object sender, EventArgs e)
         {
             string homePage = File.ReadAllText("home.txt");

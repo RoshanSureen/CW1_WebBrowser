@@ -48,7 +48,11 @@
             this.richTextBox = new System.Windows.Forms.RichTextBox();
             this.newTab_Btn = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -78,19 +82,19 @@
             // newWindowToolStripMenuItem
             // 
             this.newWindowToolStripMenuItem.Name = "newWindowToolStripMenuItem";
-            this.newWindowToolStripMenuItem.Size = new System.Drawing.Size(203, 30);
+            this.newWindowToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
             this.newWindowToolStripMenuItem.Text = "New Window";
             // 
             // goIncognitoToolStripMenuItem
             // 
             this.goIncognitoToolStripMenuItem.Name = "goIncognitoToolStripMenuItem";
-            this.goIncognitoToolStripMenuItem.Size = new System.Drawing.Size(203, 30);
+            this.goIncognitoToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
             this.goIncognitoToolStripMenuItem.Text = "Go Incognito";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(203, 30);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -198,9 +202,9 @@
             this.richTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox.Location = new System.Drawing.Point(12, 77);
+            this.richTextBox.Location = new System.Drawing.Point(-4, 0);
             this.richTextBox.Name = "richTextBox";
-            this.richTextBox.Size = new System.Drawing.Size(1254, 734);
+            this.richTextBox.Size = new System.Drawing.Size(1250, 701);
             this.richTextBox.TabIndex = 6;
             this.richTextBox.Text = "";
             // 
@@ -222,14 +226,37 @@
             this.progressBar1.Size = new System.Drawing.Size(354, 23);
             this.progressBar1.TabIndex = 9;
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Location = new System.Drawing.Point(12, 77);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1254, 734);
+            this.tabControl1.TabIndex = 10;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.richTextBox);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1246, 701);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // HW_Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 844);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.newTab_Btn);
-            this.Controls.Add(this.richTextBox);
             this.Controls.Add(this.search_Btn);
             this.Controls.Add(this.home_Btn);
             this.Controls.Add(this.nextPage_btn);
@@ -242,6 +269,8 @@
             this.Activated += new System.EventHandler(this.HW_Browser_Activated);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,6 +298,8 @@
         private System.Windows.Forms.RichTextBox richTextBox;
         private System.Windows.Forms.Button newTab_Btn;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
     }
 }
 

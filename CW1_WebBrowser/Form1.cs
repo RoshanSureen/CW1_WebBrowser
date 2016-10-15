@@ -14,6 +14,8 @@ namespace CW1_WebBrowser
 {
     public partial class HW_Browser : Form
     {
+        public string homePage { get; set; }
+
         public HW_Browser()
         {
             InitializeComponent();
@@ -88,7 +90,7 @@ namespace CW1_WebBrowser
                     catch (Exception e)
                     {
                         richTextBox.Text = e.Message;
-                        
+
                     }
                 }
             }
@@ -102,7 +104,7 @@ namespace CW1_WebBrowser
         private void url_textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             //if the keyStroke was enter then Get_Request()
-            if (e.KeyChar == (char)ConsoleKey.Enter)
+            if (e.KeyChar == (char) ConsoleKey.Enter)
             {
                 NavigateToPage();
             }
@@ -115,7 +117,9 @@ namespace CW1_WebBrowser
 
         private void HW_Browser_Activated(object sender, EventArgs e)
         {
-
+            
+            
+            
         }
     }
 }

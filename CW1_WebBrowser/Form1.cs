@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.IO;
+using System.Threading;
 
 namespace CW1_WebBrowser
 {
@@ -51,7 +52,9 @@ namespace CW1_WebBrowser
         /// <param name="e"></param>
         private void search_Btn_Click(object sender, EventArgs e)
         {
-            NavigateToPage();
+            Thread url_Thread = new Thread(new ThreadStart(NavigateToPage));
+            url_Thread.Start();
+            url_Thread.Abort();
         }
 
         /// <summary>

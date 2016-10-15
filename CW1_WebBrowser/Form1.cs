@@ -9,12 +9,15 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace CW1_WebBrowser
 {
     public partial class HW_Browser : Form
     {
-        
+        public string url_Homepage { get; set; }
+        public string name_HomePage { get; set; }
 
         public HW_Browser()
         {

@@ -14,7 +14,7 @@ namespace CW1_WebBrowser
 {
     public partial class HW_Browser : Form
     {
-        public string homePage { get; set; }
+        
 
         public HW_Browser()
         {

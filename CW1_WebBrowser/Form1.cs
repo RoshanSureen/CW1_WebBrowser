@@ -114,14 +114,16 @@ namespace CW1_WebBrowser
 
         private void home_Btn_Click(object sender, EventArgs e)
         {
-            
+            string homePage = url_textBox.Text;
+            File.WriteAllText("home.txt",homePage);
         }
 
         private void HW_Browser_Activated(object sender, EventArgs e)
         {
-            
-            
-            
+            string homePage = File.ReadAllText("home.txt");
+            Get_Request(homePage);
+
+
         }
     }
 }

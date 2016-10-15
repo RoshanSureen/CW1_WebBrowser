@@ -124,7 +124,7 @@ namespace CW1_WebBrowser
         {
             string homePage = url_textBox.Text;
             File.WriteAllText("home.txt",homePage);
-            MessageBox.Show("Your home page is set to this website!");
+            MessageBox.Show("This website is your current home page!");
         }
 
         /// <summary>

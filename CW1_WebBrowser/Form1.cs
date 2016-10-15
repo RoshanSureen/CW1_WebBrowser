@@ -139,5 +139,10 @@ namespace CW1_WebBrowser
 
 
         }
+
+        private void newTab_Btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -217,6 +217,7 @@
             this.newTab_Btn.TabIndex = 8;
             this.newTab_Btn.Text = "New Tab";
             this.newTab_Btn.UseVisualStyleBackColor = true;
+            this.newTab_Btn.Click += new System.EventHandler(this.newTab_Btn_Click);
             // 
             // progressBar1
             // 

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,11 +74,20 @@ namespace CW1_WebBrowser
                 // the client will wait for the request to be completed and then store the response in object 'res'
                 using (HttpResponseMessage res = await client.GetAsync(url))
                 {
-                    using (HttpContent content = res.Content)
+                    if (res.StatusCode == HttpStatusCode.OK)
                     {
-                        string webContent = await content.ReadAsStringAsync();
-                        richTextBox.Text = webContent;
+                        using (HttpContent content = res.Content)
+                        {
+                            string webContent = await content.ReadAsStringAsync();
+                            richTextBox.Text = webContent;
+                            
+                        }
                     }
+                    //else if (res.StatusCode == HttpStatusCode.BadRequest)
+                    //{
+                    //    richTextBox.Text = 
+                    //}
+                    
                 }
             }
         }

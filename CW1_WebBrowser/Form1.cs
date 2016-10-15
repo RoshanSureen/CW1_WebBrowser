@@ -36,7 +36,8 @@ namespace CW1_WebBrowser
         /// <param name="e"></param>
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This web browser is made by Roshan Sureen!");
+            MessageBox.Show("This web browser is made by Roshan Sureen!" +
+                            "It seds an httpRequest and displays the httpResponse from the server, Also handles the httpResponse messages.");
         }
 
         /// <summary>

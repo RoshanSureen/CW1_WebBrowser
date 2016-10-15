@@ -147,9 +147,9 @@
             // 
             this.url_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.url_textBox.Location = new System.Drawing.Point(220, 36);
+            this.url_textBox.Location = new System.Drawing.Point(190, 36);
             this.url_textBox.Name = "url_textBox";
-            this.url_textBox.Size = new System.Drawing.Size(864, 26);
+            this.url_textBox.Size = new System.Drawing.Size(894, 26);
             this.url_textBox.TabIndex = 1;
             this.url_textBox.Text = "http://";
             this.url_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.url_textBox_KeyPress);
@@ -158,23 +158,23 @@
             // 
             this.back_btn.Location = new System.Drawing.Point(12, 36);
             this.back_btn.Name = "back_btn";
-            this.back_btn.Size = new System.Drawing.Size(60, 35);
+            this.back_btn.Size = new System.Drawing.Size(45, 35);
             this.back_btn.TabIndex = 2;
-            this.back_btn.Text = "back";
+            this.back_btn.Text = "<<";
             this.back_btn.UseVisualStyleBackColor = true;
             // 
             // nextPage_btn
             // 
-            this.nextPage_btn.Location = new System.Drawing.Point(78, 36);
+            this.nextPage_btn.Location = new System.Drawing.Point(63, 36);
             this.nextPage_btn.Name = "nextPage_btn";
-            this.nextPage_btn.Size = new System.Drawing.Size(60, 35);
+            this.nextPage_btn.Size = new System.Drawing.Size(45, 35);
             this.nextPage_btn.TabIndex = 3;
-            this.nextPage_btn.Text = "Next";
+            this.nextPage_btn.Text = ">>";
             this.nextPage_btn.UseVisualStyleBackColor = true;
             // 
             // home_Btn
             // 
-            this.home_Btn.Location = new System.Drawing.Point(144, 36);
+            this.home_Btn.Location = new System.Drawing.Point(114, 36);
             this.home_Btn.Name = "home_Btn";
             this.home_Btn.Size = new System.Drawing.Size(70, 35);
             this.home_Btn.TabIndex = 4;

@@ -116,6 +116,7 @@ namespace CW1_WebBrowser
         {
             string homePage = url_textBox.Text;
             File.WriteAllText("home.txt",homePage);
+            MessageBox.Show("Your home page is set to this website!");
         }
 
         private void HW_Browser_Activated(object sender, EventArgs e)

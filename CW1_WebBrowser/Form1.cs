@@ -105,5 +105,10 @@ namespace CW1_WebBrowser
                 NavigateToPage();
             }
         }
+
+        private void home_Btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

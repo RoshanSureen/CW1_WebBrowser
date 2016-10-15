@@ -180,6 +180,7 @@
             this.home_Btn.TabIndex = 4;
             this.home_Btn.Text = "Home";
             this.home_Btn.UseVisualStyleBackColor = true;
+            this.home_Btn.Click += new System.EventHandler(this.home_Btn_Click);
             // 
             // search_Btn
             // 

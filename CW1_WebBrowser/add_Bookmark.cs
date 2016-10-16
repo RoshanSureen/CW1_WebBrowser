@@ -31,7 +31,10 @@ namespace CW1_WebBrowser
         private void Initialize_URL_Field()
         {
             url_bookmark.Text = currentURL;
+        }
 
+        private void addBookmark_btn_Click(object sender, EventArgs e)
+        {
 
         }
     }

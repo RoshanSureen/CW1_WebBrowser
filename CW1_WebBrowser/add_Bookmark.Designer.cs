@@ -45,6 +45,7 @@
             this.addBookmark_btn.TabIndex = 0;
             this.addBookmark_btn.Text = "OK";
             this.addBookmark_btn.UseVisualStyleBackColor = true;
+            this.addBookmark_btn.Click += new System.EventHandler(this.addBookmark_btn_Click);
             // 
             // cancelBokmark_btn
             // 

@@ -127,6 +127,11 @@ namespace CW1_WebBrowser
             Get_Request(homePage);
         }
 
+        /// <summary>
+        /// This function is responsoble for changing the home page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void editHomeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string homePage = url_textBox.Text;
@@ -134,19 +139,7 @@ namespace CW1_WebBrowser
             MessageBox.Show("This website is your current home page!");
         }
 
-        /// <summary>
-        /// Home page set by user is shown when the browser starts
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void HW_Browser_Activated(object sender, EventArgs e)
-        {
-            string homePage = File.ReadAllText("home.txt");
-            url_textBox.Text = homePage;
-            Get_Request(homePage);
-
-
-        }
+        
 
         /// <summary>
         /// This function runs when the new Tab button is clicked
@@ -193,6 +186,12 @@ namespace CW1_WebBrowser
             newBookmark.Show();
         }
 
-        
+        private void HW_Browser_Load(object sender, EventArgs e)
+        {
+            string homePage = File.ReadAllText("home.txt");
+            url_textBox.Text = homePage;
+            Get_Request(homePage);
+
+        }
     }
 }

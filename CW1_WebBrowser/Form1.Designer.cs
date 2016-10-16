@@ -40,6 +40,8 @@
             this.addToListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bookmarkThisPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.url_textBox = new System.Windows.Forms.TextBox();
             this.back_btn = new System.Windows.Forms.Button();
             this.nextPage_btn = new System.Windows.Forms.Button();
@@ -51,8 +53,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.closeTab_btn = new System.Windows.Forms.Button();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -151,6 +151,21 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editHomeToolStripMenuItem});
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(88, 29);
+            this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // editHomeToolStripMenuItem
+            // 
+            this.editHomeToolStripMenuItem.Name = "editHomeToolStripMenuItem";
+            this.editHomeToolStripMenuItem.Size = new System.Drawing.Size(181, 30);
+            this.editHomeToolStripMenuItem.Text = "edit Home";
+            this.editHomeToolStripMenuItem.Click += new System.EventHandler(this.editHomeToolStripMenuItem_Click);
             // 
             // url_textBox
             // 
@@ -266,21 +281,6 @@
             this.closeTab_btn.UseVisualStyleBackColor = true;
             this.closeTab_btn.Click += new System.EventHandler(this.closeTab_btn_Click);
             // 
-            // optionsToolStripMenuItem
-            // 
-            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editHomeToolStripMenuItem});
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(88, 29);
-            this.optionsToolStripMenuItem.Text = "Options";
-            // 
-            // editHomeToolStripMenuItem
-            // 
-            this.editHomeToolStripMenuItem.Name = "editHomeToolStripMenuItem";
-            this.editHomeToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
-            this.editHomeToolStripMenuItem.Text = "edit Home";
-            this.editHomeToolStripMenuItem.Click += new System.EventHandler(this.editHomeToolStripMenuItem_Click);
-            // 
             // HW_Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -299,7 +299,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "HW_Browser";
             this.Text = "HW_Browser";
-            this.Activated += new System.EventHandler(this.HW_Browser_Activated);
+            this.Load += new System.EventHandler(this.HW_Browser_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);

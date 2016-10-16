@@ -15,8 +15,8 @@ namespace CW1_WebBrowser
 {
     public partial class add_Bookmark : Form
     {
-        public string currentURL { get; set; }
-        public string currentURL_name { get; set; }
+        private string currentURL { get; set; }
+        private string currentURL_name { get; set; }
 
         public add_Bookmark(string url_BK)
         {

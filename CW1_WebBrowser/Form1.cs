@@ -163,7 +163,8 @@ namespace CW1_WebBrowser
 
         private void bookmarkThisPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            add_Bookmark newBookmark = new add_Bookmark();
+            newBookmark.Show();
         }
     }
 }

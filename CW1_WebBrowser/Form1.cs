@@ -141,11 +141,19 @@ namespace CW1_WebBrowser
 
         }
 
+        /// <summary>
+        /// This function runs when the new Tab button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void newTab_Btn_Click(object sender, EventArgs e)
         {
             AddTabPage();
         }
 
+        /// <summary>
+        /// This function is responsible for adding a new tab.
+        /// </summary>
         private void AddTabPage()
         {
             string title = "New Tab";
@@ -155,12 +163,22 @@ namespace CW1_WebBrowser
             tb.Controls.Add(tabsRichTxtBox);
             tabsRichTxtBox.Dock = DockStyle.Fill;
         }
-
+        
+        /// <summary>
+        /// This function closes the current working tab
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void closeTab_btn_Click(object sender, EventArgs e)
         {
             tabControl1.TabPages.RemoveAt(tabControl1.SelectedIndex);
         }
-
+        
+        /// <summary>
+        /// This function calls the Add_bookmark form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bookmarkThisPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             add_Bookmark newBookmark = new add_Bookmark();

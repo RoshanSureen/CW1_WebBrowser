@@ -15,11 +15,12 @@ namespace CW1_WebBrowser
 {
     public partial class add_Bookmark : Form
     {
-        public add_Bookmark()
+        public string currentURL { get; set; }
+        public add_Bookmark(string url_BK)
         {
             InitializeComponent();
+            currentURL = url_BK;
             Initialize_URL_Field();
-
         }
 
         private void cancelBokmark_btn_Click(object sender, EventArgs e)
@@ -29,8 +30,9 @@ namespace CW1_WebBrowser
 
         private void Initialize_URL_Field()
         {
-            HW_Browser hb = new HW_Browser();
-               
+            url_bookmark.Text = currentURL;
+
+
         }
     }
 }

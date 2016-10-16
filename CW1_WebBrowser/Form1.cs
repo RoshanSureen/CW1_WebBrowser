@@ -181,7 +181,8 @@ namespace CW1_WebBrowser
         /// <param name="e"></param>
         private void bookmarkThisPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            add_Bookmark newBookmark = new add_Bookmark();
+            string url_for_BK = url_textBox.Text;
+            add_Bookmark newBookmark = new add_Bookmark(url_for_BK);
             newBookmark.Show();
         }
     }

@@ -55,6 +55,7 @@
             this.cancelBokmark_btn.TabIndex = 1;
             this.cancelBokmark_btn.Text = "Cancel";
             this.cancelBokmark_btn.UseVisualStyleBackColor = true;
+            this.cancelBokmark_btn.Click += new System.EventHandler(this.cancelBokmark_btn_Click);
             // 
             // name_of_bookmark
             // 

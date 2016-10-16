@@ -16,5 +16,10 @@ namespace CW1_WebBrowser
         {
             InitializeComponent();
         }
+
+        private void cancelBokmark_btn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

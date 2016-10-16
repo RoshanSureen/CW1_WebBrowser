@@ -160,5 +160,10 @@ namespace CW1_WebBrowser
         {
             tabControl1.TabPages.RemoveAt(tabControl1.SelectedIndex);
         }
+
+        private void bookmarkThisPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

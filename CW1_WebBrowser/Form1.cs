@@ -122,8 +122,15 @@ namespace CW1_WebBrowser
         /// <param name="e"></param>
         private void home_Btn_Click(object sender, EventArgs e)
         {
+            string homePage = File.ReadAllText("home.txt");
+            url_textBox.Text = homePage;
+            Get_Request(homePage);
+        }
+
+        private void editHomeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             string homePage = url_textBox.Text;
-            File.WriteAllText("home.txt",homePage);
+            File.WriteAllText("home.txt", homePage);
             MessageBox.Show("This website is your current home page!");
         }
 
@@ -181,9 +188,11 @@ namespace CW1_WebBrowser
         /// <param name="e"></param>
         private void bookmarkThisPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string url_for_BK = url_textBox.Text;
-            add_Bookmark newBookmark = new add_Bookmark(url_for_BK);
+            
+            add_Bookmark newBookmark = new add_Bookmark(url_textBox.Text);
             newBookmark.Show();
         }
+
+        
     }
 }

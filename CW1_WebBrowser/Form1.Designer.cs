@@ -51,6 +51,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.closeTab_btn = new System.Windows.Forms.Button();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -63,7 +65,8 @@
             this.fileToolStripMenuItem,
             this.historyToolStripMenuItem,
             this.favToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.optionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1278, 33);
@@ -263,6 +266,21 @@
             this.closeTab_btn.UseVisualStyleBackColor = true;
             this.closeTab_btn.Click += new System.EventHandler(this.closeTab_btn_Click);
             // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editHomeToolStripMenuItem});
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(88, 29);
+            this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // editHomeToolStripMenuItem
+            // 
+            this.editHomeToolStripMenuItem.Name = "editHomeToolStripMenuItem";
+            this.editHomeToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+            this.editHomeToolStripMenuItem.Text = "edit Home";
+            this.editHomeToolStripMenuItem.Click += new System.EventHandler(this.editHomeToolStripMenuItem_Click);
+            // 
             // HW_Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -316,6 +334,8 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button closeTab_btn;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editHomeToolStripMenuItem;
     }
 }
 

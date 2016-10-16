@@ -143,9 +143,17 @@ namespace CW1_WebBrowser
 
         private void newTab_Btn_Click(object sender, EventArgs e)
         {
-            
+            AddTabPage();
         }
 
-        
+        private void AddTabPage()
+        {
+            string title = "New Tab";
+            TabPage tb = new TabPage(title);
+            tabControl1.TabPages.Add(tb);
+            RichTextBox tabsRichTxtBox = new RichTextBox();
+            tb.Controls.Add(tabsRichTxtBox);
+            tabsRichTxtBox.Dock = DockStyle.Fill;
+        }
     }
 }

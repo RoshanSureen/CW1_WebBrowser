@@ -159,6 +159,7 @@ namespace CW1_WebBrowser
             string title = "New Tab";
             TabPage tb = new TabPage(title);
             tabControl1.TabPages.Add(tb);
+            tabControl1.SelectTab(tb);
             RichTextBox tabsRichTxtBox = new RichTextBox();
             tb.Controls.Add(tabsRichTxtBox);
             tabsRichTxtBox.Dock = DockStyle.Fill;

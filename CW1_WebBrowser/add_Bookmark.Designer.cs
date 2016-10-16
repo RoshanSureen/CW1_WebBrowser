@@ -30,8 +30,8 @@
         {
             this.addBookmark_btn = new System.Windows.Forms.Button();
             this.cancelBokmark_btn = new System.Windows.Forms.Button();
-            this.name_of_bookmark = new System.Windows.Forms.TextBox();
-            this.url_of_Bookmark = new System.Windows.Forms.TextBox();
+            this.url_bookmark = new System.Windows.Forms.TextBox();
+            this.name_bookmark = new System.Windows.Forms.TextBox();
             this.url_BK_label = new System.Windows.Forms.Label();
             this.name_BK_Label = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -57,23 +57,23 @@
             this.cancelBokmark_btn.UseVisualStyleBackColor = true;
             this.cancelBokmark_btn.Click += new System.EventHandler(this.cancelBokmark_btn_Click);
             // 
-            // name_of_bookmark
+            // url_bookmark
             // 
-            this.name_of_bookmark.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.url_bookmark.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.name_of_bookmark.Location = new System.Drawing.Point(16, 32);
-            this.name_of_bookmark.Name = "name_of_bookmark";
-            this.name_of_bookmark.Size = new System.Drawing.Size(370, 26);
-            this.name_of_bookmark.TabIndex = 2;
+            this.url_bookmark.Location = new System.Drawing.Point(16, 32);
+            this.url_bookmark.Name = "url_bookmark";
+            this.url_bookmark.Size = new System.Drawing.Size(370, 26);
+            this.url_bookmark.TabIndex = 2;
             // 
-            // url_of_Bookmark
+            // name_bookmark
             // 
-            this.url_of_Bookmark.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.name_bookmark.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.url_of_Bookmark.Location = new System.Drawing.Point(16, 107);
-            this.url_of_Bookmark.Name = "url_of_Bookmark";
-            this.url_of_Bookmark.Size = new System.Drawing.Size(370, 26);
-            this.url_of_Bookmark.TabIndex = 3;
+            this.name_bookmark.Location = new System.Drawing.Point(16, 107);
+            this.name_bookmark.Name = "name_bookmark";
+            this.name_bookmark.Size = new System.Drawing.Size(370, 26);
+            this.name_bookmark.TabIndex = 3;
             // 
             // url_BK_label
             // 
@@ -100,8 +100,8 @@
             this.ClientSize = new System.Drawing.Size(388, 188);
             this.Controls.Add(this.name_BK_Label);
             this.Controls.Add(this.url_BK_label);
-            this.Controls.Add(this.url_of_Bookmark);
-            this.Controls.Add(this.name_of_bookmark);
+            this.Controls.Add(this.name_bookmark);
+            this.Controls.Add(this.url_bookmark);
             this.Controls.Add(this.cancelBokmark_btn);
             this.Controls.Add(this.addBookmark_btn);
             this.Name = "add_Bookmark";
@@ -115,8 +115,8 @@
 
         private System.Windows.Forms.Button addBookmark_btn;
         private System.Windows.Forms.Button cancelBokmark_btn;
-        private System.Windows.Forms.TextBox name_of_bookmark;
-        private System.Windows.Forms.TextBox url_of_Bookmark;
+        private System.Windows.Forms.TextBox url_bookmark;
+        private System.Windows.Forms.TextBox name_bookmark;
         private System.Windows.Forms.Label url_BK_label;
         private System.Windows.Forms.Label name_BK_Label;
     }

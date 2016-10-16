@@ -18,11 +18,19 @@ namespace CW1_WebBrowser
         public add_Bookmark()
         {
             InitializeComponent();
+            Initialize_URL_Field();
+
         }
 
         private void cancelBokmark_btn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Initialize_URL_Field()
+        {
+            HW_Browser hb = new HW_Browser();
+               
         }
     }
 }

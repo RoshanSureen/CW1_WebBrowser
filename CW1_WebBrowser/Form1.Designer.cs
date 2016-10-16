@@ -50,6 +50,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.closeTab_btn = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -82,19 +83,19 @@
             // newWindowToolStripMenuItem
             // 
             this.newWindowToolStripMenuItem.Name = "newWindowToolStripMenuItem";
-            this.newWindowToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+            this.newWindowToolStripMenuItem.Size = new System.Drawing.Size(203, 30);
             this.newWindowToolStripMenuItem.Text = "New Window";
             // 
             // goIncognitoToolStripMenuItem
             // 
             this.goIncognitoToolStripMenuItem.Name = "goIncognitoToolStripMenuItem";
-            this.goIncognitoToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+            this.goIncognitoToolStripMenuItem.Size = new System.Drawing.Size(203, 30);
             this.goIncognitoToolStripMenuItem.Text = "Go Incognito";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(203, 30);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -153,7 +154,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.url_textBox.Location = new System.Drawing.Point(190, 36);
             this.url_textBox.Name = "url_textBox";
-            this.url_textBox.Size = new System.Drawing.Size(894, 26);
+            this.url_textBox.Size = new System.Drawing.Size(793, 26);
             this.url_textBox.TabIndex = 1;
             this.url_textBox.Text = "http://";
             this.url_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.url_textBox_KeyPress);
@@ -189,7 +190,7 @@
             // search_Btn
             // 
             this.search_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.search_Btn.Location = new System.Drawing.Point(1090, 36);
+            this.search_Btn.Location = new System.Drawing.Point(989, 36);
             this.search_Btn.Name = "search_Btn";
             this.search_Btn.Size = new System.Drawing.Size(75, 35);
             this.search_Btn.TabIndex = 5;
@@ -211,7 +212,7 @@
             // newTab_Btn
             // 
             this.newTab_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.newTab_Btn.Location = new System.Drawing.Point(1171, 36);
+            this.newTab_Btn.Location = new System.Drawing.Point(1070, 36);
             this.newTab_Btn.Name = "newTab_Btn";
             this.newTab_Btn.Size = new System.Drawing.Size(95, 35);
             this.newTab_Btn.TabIndex = 8;
@@ -250,11 +251,22 @@
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // closeTab_btn
+            // 
+            this.closeTab_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeTab_btn.Location = new System.Drawing.Point(1171, 36);
+            this.closeTab_btn.Name = "closeTab_btn";
+            this.closeTab_btn.Size = new System.Drawing.Size(95, 35);
+            this.closeTab_btn.TabIndex = 11;
+            this.closeTab_btn.Text = "Close Tab";
+            this.closeTab_btn.UseVisualStyleBackColor = true;
+            // 
             // HW_Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 844);
+            this.Controls.Add(this.closeTab_btn);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.newTab_Btn);
@@ -301,6 +313,7 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button closeTab_btn;
     }
 }
 

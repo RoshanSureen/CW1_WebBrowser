@@ -135,6 +135,7 @@ namespace CW1_WebBrowser
         private void HW_Browser_Activated(object sender, EventArgs e)
         {
             string homePage = File.ReadAllText("home.txt");
+            url_textBox.Text = homePage;
             Get_Request(homePage);
 
 
@@ -142,7 +143,9 @@ namespace CW1_WebBrowser
 
         private void newTab_Btn_Click(object sender, EventArgs e)
         {
-
+            
         }
+
+        
     }
 }

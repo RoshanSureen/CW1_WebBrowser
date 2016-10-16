@@ -155,5 +155,10 @@ namespace CW1_WebBrowser
             tb.Controls.Add(tabsRichTxtBox);
             tabsRichTxtBox.Dock = DockStyle.Fill;
         }
+
+        private void closeTab_btn_Click(object sender, EventArgs e)
+        {
+            tabControl1.TabPages.RemoveAt(tabControl1.SelectedIndex);
+        }
     }
 }

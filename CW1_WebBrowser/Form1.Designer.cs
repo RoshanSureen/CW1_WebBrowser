@@ -260,6 +260,7 @@
             this.closeTab_btn.TabIndex = 11;
             this.closeTab_btn.Text = "Close Tab";
             this.closeTab_btn.UseVisualStyleBackColor = true;
+            this.closeTab_btn.Click += new System.EventHandler(this.closeTab_btn_Click);
             // 
             // HW_Browser
             // 

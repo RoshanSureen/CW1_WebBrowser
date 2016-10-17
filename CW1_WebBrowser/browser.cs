@@ -17,11 +17,12 @@ namespace CW1_WebBrowser
 {
     public partial class HW_Browser : Form
     {
-        private System.Timers.Timer time;
+        private string url_Value { get; set; }
 
         public HW_Browser()
         {
             InitializeComponent();
+            url_Value = "http://";
         }
 
         /// <summary>
@@ -160,11 +161,19 @@ namespace CW1_WebBrowser
             TabPage tb = new TabPage(title);
             tabControl1.TabPages.Add(tb);
             tabControl1.SelectTab(tb);
+
             RichTextBox tabsRichTxtBox = new RichTextBox();
             tb.Controls.Add(tabsRichTxtBox);
             tabsRichTxtBox.Dock = DockStyle.Fill;
+
+
+            if (tb.Enabled)
+            {
+                url_textBox.Text = url_Value;
+            }
+
         }
-        
+
         /// <summary>
         /// This function closes the current working tab
         /// </summary>

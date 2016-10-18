@@ -70,6 +70,7 @@ namespace CW1_WebBrowser
             // the url typed by user in the textbox is stored in var web_URL
             string web_URL = url_textBox.Text;
 
+            
             // function call
             Get_Request(web_URL);
         }

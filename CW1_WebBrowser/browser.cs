@@ -12,12 +12,16 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.IO;
 using System.Threading;
+using HtmlAgilityPack;
 
 namespace CW1_WebBrowser
 {
     public partial class HW_Browser : Form
     {
         private string url_Value { get; set; }
+
+        private TabPage tb;
+        private RichTextBox newRich_TxtBox;
 
         public HW_Browser()
         {
@@ -83,23 +87,32 @@ namespace CW1_WebBrowser
                 // the client will wait for the request to be completed and then store the response in object 'res'
                 using (HttpResponseMessage res = await client.GetAsync(url))
                 {
-                    // try and catch is used to display httpResponse error messages
-                    try
+                    using (HttpContent content = res.Content)
                     {
-                        using (HttpContent content = res.Content)
-                        {
-                            string webContent = await content.ReadAsStringAsync();
-                            richTextBox.Text = webContent;
-
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        richTextBox.Text = e.Message;
-
+                        string webContent = await content.ReadAsStringAsync();
+                        DisplayWebContent(webContent);
                     }
                 }
             }
+        }
+
+        private void DisplayWebContent(string content)
+        {
+            HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
+            htmlDoc.OptionFixNestedTags = true;
+            
+            htmlDoc.LoadHtml(content);
+
+            var tab_header = htmlDoc.DocumentNode.SelectSingleNode("//head/title");
+
+            tb = new TabPage(WebUtility.HtmlDecode(tab_header.InnerText.Trim()));
+            tabControl1.TabPages.Add(tb);
+            newRich_TxtBox = new RichTextBox();
+            tb.Controls.Add(newRich_TxtBox);
+            newRich_TxtBox.Dock = DockStyle.Fill;
+            newRich_TxtBox.Text = content;
+
+
         }
 
         /// <summary>
@@ -158,13 +171,13 @@ namespace CW1_WebBrowser
         private void AddTabPage()
         {
             string title = "New Tab";
-            TabPage tb = new TabPage(title);
+            tb = new TabPage(title);
             tabControl1.TabPages.Add(tb);
             tabControl1.SelectTab(tb);
 
-            RichTextBox tabsRichTxtBox = new RichTextBox();
-            tb.Controls.Add(tabsRichTxtBox);
-            tabsRichTxtBox.Dock = DockStyle.Fill;
+            newRich_TxtBox = new RichTextBox();
+            tb.Controls.Add(newRich_TxtBox);
+            newRich_TxtBox.Dock = DockStyle.Fill;
 
 
             if (tb.Enabled)

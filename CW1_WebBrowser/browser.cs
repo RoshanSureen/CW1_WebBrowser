@@ -20,7 +20,12 @@ namespace CW1_WebBrowser
     {
         private string url_Value { get; set; }
 
+        private TabPage currentTabPage { get; set; }
+
         private TabPage tb;
+
+        private RichTextBox curRichTextBox { get; set; }
+
         private RichTextBox newRich_TxtBox;
 
         public HW_Browser()
@@ -47,7 +52,7 @@ namespace CW1_WebBrowser
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("This web browser is made by Roshan Sureen!" +
-                            "It seds an httpRequest and displays the httpResponse from the server, Also handles the httpResponse messages.");
+                            "It sends an httpRequest and displays the httpResponse from the server, Also handles the httpResponse messages.");
         }
 
         /// <summary>
@@ -57,9 +62,11 @@ namespace CW1_WebBrowser
         /// <param name="e"></param>
         private void search_Btn_Click(object sender, EventArgs e)
         {
-            Thread url_Thread = new Thread(new ThreadStart(NavigateToPage));
-            url_Thread.Start();
-            url_Thread.Abort();
+            //Thread url_Thread = new Thread(new ThreadStart(NavigateToPage));
+            //url_Thread.Start();
+            //url_Thread.Abort();
+
+            NavigateToPage();
         }
 
         /// <summary>
@@ -84,36 +91,67 @@ namespace CW1_WebBrowser
             // using() is used to dispose the client object when it goes out of scope
             using (HttpClient client = new HttpClient())
             {
-
                 // the client will wait for the request to be completed and then store the response in object 'res'
                 using (HttpResponseMessage res = await client.GetAsync(url))
                 {
                     using (HttpContent content = res.Content)
                     {
                         string webContent = await content.ReadAsStringAsync();
-                        DisplayWebContent(webContent);
+
+                        HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
+                        htmlDoc.OptionFixNestedTags = true;
+
+                        htmlDoc.LoadHtml(webContent);
+
+                        var tab_header = htmlDoc.DocumentNode.SelectSingleNode("//head/title");
+                        string titleFromPage = WebUtility.HtmlDecode(tab_header.InnerText.Trim());
+                        DisplayWebContent(webContent,titleFromPage);
                     }
                 }
             }
         }
 
-        private void DisplayWebContent(string content)
+        //private int checkTab()
+        //{
+        //    return tabControl1.TabPages.Count;
+        //}
+
+        private void DisplayWebContent(string content,string title)
         {
-            HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
-            htmlDoc.OptionFixNestedTags = true;
+            if (currentTabPage == null)
+            {
+                tb = new TabPage(title);
+                currentTabPage = tb;
+                tabControl1.TabPages.Add(tb);
+                newRich_TxtBox = new RichTextBox();
+                curRichTextBox = newRich_TxtBox;
+                tb.Controls.Add(newRich_TxtBox);
+                newRich_TxtBox.Dock = DockStyle.Fill;
+                newRich_TxtBox.Text = content;
+            }
+            else
+            {
+                if (tabControl1.SelectedTab.Text == currentTabPage.Text)
+                {
+                    currentTabPage.Text = title;
+                    curRichTextBox.Text = content;
+                }
+                else
+                {
+                    currentTabPage = tabControl1.SelectedTab;
+                    foreach (Control control in tabControl1.SelectedTab.Controls)
+                    {
+                        if (control is RichTextBox)
+                        {
+                            curRichTextBox = (RichTextBox)control;
+                        }
+                    }
+                    currentTabPage.Text = title;
+                    curRichTextBox.Text = content;
+                }
+                
+            }   
             
-            htmlDoc.LoadHtml(content);
-
-            var tab_header = htmlDoc.DocumentNode.SelectSingleNode("//head/title");
-
-            tb = new TabPage(WebUtility.HtmlDecode(tab_header.InnerText.Trim()));
-            tabControl1.TabPages.Add(tb);
-            newRich_TxtBox = new RichTextBox();
-            tb.Controls.Add(newRich_TxtBox);
-            newRich_TxtBox.Dock = DockStyle.Fill;
-            newRich_TxtBox.Text = content;
-
-
         }
 
         /// <summary>
@@ -173,10 +211,12 @@ namespace CW1_WebBrowser
         {
             string title = "New Tab";
             tb = new TabPage(title);
+            currentTabPage = tb;
             tabControl1.TabPages.Add(tb);
             tabControl1.SelectTab(tb);
 
             newRich_TxtBox = new RichTextBox();
+            curRichTextBox = newRich_TxtBox;
             tb.Controls.Add(newRich_TxtBox);
             newRich_TxtBox.Dock = DockStyle.Fill;
 
@@ -212,9 +252,17 @@ namespace CW1_WebBrowser
 
         private void HW_Browser_Load(object sender, EventArgs e)
         {
-            string homePage = File.ReadAllText("home.txt");
-            url_textBox.Text = homePage;
-            Get_Request(homePage);
+            if (File.Exists("home.txt"))
+            {
+                string homePage = File.ReadAllText("home.txt");
+                url_textBox.Text = homePage;
+                Get_Request(homePage);
+            }
+            else
+            {
+                File.Create("home.txt");
+            }
+            
 
         }
     }

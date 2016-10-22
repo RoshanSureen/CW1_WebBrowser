@@ -131,7 +131,7 @@ namespace CW1_WebBrowser
             }
             else
             {
-                if (tabControl1.SelectedTab.Text == currentTabPage.Text)
+                if (tabControl1.SelectedTab.TabIndex == currentTabPage.TabIndex)
                 {
                     currentTabPage.Text = title;
                     curRichTextBox.Text = content;

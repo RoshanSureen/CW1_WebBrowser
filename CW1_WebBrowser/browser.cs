@@ -111,10 +111,7 @@ namespace CW1_WebBrowser
             }
         }
 
-        //private int checkTab()
-        //{
-        //    return tabControl1.TabPages.Count;
-        //}
+        
 
         private void DisplayWebContent(string content,string title)
         {
@@ -264,6 +261,11 @@ namespace CW1_WebBrowser
             }
             
 
+        }
+
+        private void tabControl1_TabIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

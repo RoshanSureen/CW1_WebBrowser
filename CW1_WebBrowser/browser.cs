@@ -6,12 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web.Http.ExceptionHandling;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.IO;
 using System.Threading;
+using System.Web.Http;
 using HtmlAgilityPack;
 
 namespace CW1_WebBrowser
@@ -77,7 +79,7 @@ namespace CW1_WebBrowser
             // the url typed by user in the textbox is stored in var web_URL
             string web_URL = url_textBox.Text;
 
-            
+
             // function call
             Get_Request(web_URL);
         }
@@ -86,32 +88,44 @@ namespace CW1_WebBrowser
         /// This function ensures that the http request and response run on their own thread
         /// </summary>
         /// <param name="url"></param>
+        //async void Get_Request(string url)
+        //{
+        //    // using() is used to dispose the client object when it goes out of scope
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        // the client will wait for the request to be completed and then store the response in object 'res'
+        //        using (HttpResponseMessage res = await client.GetAsync(url))
+        //        {
+        //            try
+        //            {
+        //                using (HttpContent content = res.Content)
+        //                {
+        //                    string webContent = await content.ReadAsStringAsync();
+
+        //                    HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
+        //                    htmlDoc.OptionFixNestedTags = true;
+
+        //                    htmlDoc.LoadHtml(webContent);
+
+        //                    var tab_header = htmlDoc.DocumentNode.SelectSingleNode("//head/title");
+        //                    string titleFromPage = WebUtility.HtmlDecode(tab_header.InnerText.Trim());
+        //                    DisplayWebContent(webContent, titleFromPage);
+        //                }
+        //            }
+        //            catch (HttpResponseException webException)
+        //            {
+        //                string error = webException.ToString();
+        //                DisplayWebContent(error,"Error");
+        //            }
+
+        //        }
+        //    }
+        //}
+
         async void Get_Request(string url)
         {
-            // using() is used to dispose the client object when it goes out of scope
-            using (HttpClient client = new HttpClient())
-            {
-                // the client will wait for the request to be completed and then store the response in object 'res'
-                using (HttpResponseMessage res = await client.GetAsync(url))
-                {
-                    using (HttpContent content = res.Content)
-                    {
-                        string webContent = await content.ReadAsStringAsync();
-
-                        HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
-                        htmlDoc.OptionFixNestedTags = true;
-
-                        htmlDoc.LoadHtml(webContent);
-
-                        var tab_header = htmlDoc.DocumentNode.SelectSingleNode("//head/title");
-                        string titleFromPage = WebUtility.HtmlDecode(tab_header.InnerText.Trim());
-                        DisplayWebContent(webContent,titleFromPage);
-                    }
-                }
-            }
+            
         }
-
-        
 
         private void DisplayWebContent(string content,string title)
         {
@@ -235,17 +249,7 @@ namespace CW1_WebBrowser
             tabControl1.TabPages.RemoveAt(tabControl1.SelectedIndex);
         }
         
-        /// <summary>
-        /// This function calls the Add_bookmark form
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void bookmarkThisPageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-            add_Bookmark newBookmark = new add_Bookmark(url_textBox.Text);
-            newBookmark.Show();
-        }
+        
 
         private void HW_Browser_Load(object sender, EventArgs e)
         {
@@ -267,5 +271,7 @@ namespace CW1_WebBrowser
         {
             
         }
+
+        
     }
 }

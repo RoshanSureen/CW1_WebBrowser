@@ -139,7 +139,6 @@
             this.bookmarkThisPageToolStripMenuItem.Name = "bookmarkThisPageToolStripMenuItem";
             this.bookmarkThisPageToolStripMenuItem.Size = new System.Drawing.Size(256, 30);
             this.bookmarkThisPageToolStripMenuItem.Text = "Bookmark this page";
-            this.bookmarkThisPageToolStripMenuItem.Click += new System.EventHandler(this.bookmarkThisPageToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 

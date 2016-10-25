@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http.ExceptionHandling;
 using System.Text;
 using System.Threading.Tasks;
@@ -117,7 +116,8 @@ namespace CW1_WebBrowser
                         }
                         catch (Exception e)
                         {
-                            DisplayWebContent(e.Message,"Error");
+                            string errorCode = res.StatusCode.ToString();
+                            DisplayWebContent(e.Message,errorCode);
                         }
                     }
                     

@@ -88,44 +88,44 @@ namespace CW1_WebBrowser
         /// This function ensures that the http request and response run on their own thread
         /// </summary>
         /// <param name="url"></param>
-        //async void Get_Request(string url)
-        //{
-        //    // using() is used to dispose the client object when it goes out of scope
-        //    using (HttpClient client = new HttpClient())
-        //    {
-        //        // the client will wait for the request to be completed and then store the response in object 'res'
-        //        using (HttpResponseMessage res = await client.GetAsync(url))
-        //        {
-        //            try
-        //            {
-        //                using (HttpContent content = res.Content)
-        //                {
-        //                    string webContent = await content.ReadAsStringAsync();
-
-        //                    HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
-        //                    htmlDoc.OptionFixNestedTags = true;
-
-        //                    htmlDoc.LoadHtml(webContent);
-
-        //                    var tab_header = htmlDoc.DocumentNode.SelectSingleNode("//head/title");
-        //                    string titleFromPage = WebUtility.HtmlDecode(tab_header.InnerText.Trim());
-        //                    DisplayWebContent(webContent, titleFromPage);
-        //                }
-        //            }
-        //            catch (HttpResponseException webException)
-        //            {
-        //                string error = webException.ToString();
-        //                DisplayWebContent(error,"Error");
-        //            }
-
-        //        }
-        //    }
-        //}
-
         async void Get_Request(string url)
         {
-            
+            // using() is used to dispose the client object when it goes out of scope
+            using (HttpClient client = new HttpClient())
+            {
+                // the client will wait for the request to be completed and then store the response in object 'res'
+                using (HttpResponseMessage res = await client.GetAsync(url))
+                {
+                    if (res.IsSuccessStatusCode)
+                    {
+                        using (HttpContent content = res.Content)
+                        {
+                            string webContent = await content.ReadAsStringAsync();
+                            HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
+                            htmlDoc.OptionFixNestedTags = true;
+                            htmlDoc.LoadHtml(webContent);
+                            var tab_header = htmlDoc.DocumentNode.SelectSingleNode("//head/title");
+                            string titleFromPage = WebUtility.HtmlDecode(tab_header.InnerText.Trim());
+                            DisplayWebContent(webContent, titleFromPage);
+                        }
+                    }
+                    else
+                    {
+                        try
+                        {
+                            res.EnsureSuccessStatusCode();
+                        }
+                        catch (Exception e)
+                        {
+                            DisplayWebContent(e.Message,"Error");
+                        }
+                    }
+                    
+                }
+            }
         }
+
+        
 
         private void DisplayWebContent(string content,string title)
         {

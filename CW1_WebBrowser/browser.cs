@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http.ExceptionHandling;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,6 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.IO;
 using System.Threading;
-using System.Web.Http;
 using HtmlAgilityPack;
 
 namespace CW1_WebBrowser
@@ -100,9 +100,12 @@ namespace CW1_WebBrowser
                         using (HttpContent content = res.Content)
                         {
                             string webContent = await content.ReadAsStringAsync();
+
                             HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
                             htmlDoc.OptionFixNestedTags = true;
+
                             htmlDoc.LoadHtml(webContent);
+
                             var tab_header = htmlDoc.DocumentNode.SelectSingleNode("//head/title");
                             string titleFromPage = WebUtility.HtmlDecode(tab_header.InnerText.Trim());
                             DisplayWebContent(webContent, titleFromPage);
@@ -265,11 +268,6 @@ namespace CW1_WebBrowser
             }
             
 
-        }
-
-        private void tabControl1_TabIndexChanged(object sender, EventArgs e)
-        {
-            
         }
 
         

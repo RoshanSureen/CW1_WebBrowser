@@ -10,17 +10,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using Newtonsoft.Json;
-using System.Diagnostics;
+using System.Dynamic;
 
 namespace CW1_WebBrowser
 {
     public partial class favourites : Form
     {
-        HW_Browser browser = new HW_Browser();
-        
-        public favourites()
+        dynamic obj = new ExpandoObject();
+        public string result;
+
+        public favourites(string url)
         {
             InitializeComponent();
+            urlWebsite_txtBox.Text = url;
         }
 
         private void cancel_favForm_Click(object sender, EventArgs e)
@@ -30,37 +32,10 @@ namespace CW1_WebBrowser
 
         private void saveBookamrkBtn_Click(object sender, EventArgs e)
         {
-            string bookmark_URL_To_Add = urlWebsite_txtBox.Text;
-            string name_Of_URL_To_ADD = urlName_txtBox.Text;
-            addBookmark(bookmark_URL_To_Add,name_Of_URL_To_ADD);
-        }
-
-        private void addBookmark(string website_URL,string name_URL)
-        {
-
-            if (browser.myList == null)
-            {
-                browser.myList = new List<bookmarkDetails>();
-                browser.myList.Add(new bookmarkDetails(website_URL,name_URL));
-            }
-            
-            browser.myList.Add(new bookmarkDetails(website_URL,name_URL));
-            MessageBox.Show("URL added to favourites!");
-            Debug.WriteLine(browser.myList);
-        }
-
-        
-    }
-
-    public class bookmarkDetails
-    {
-        public string URL_bookmark { get; set; }
-        public string URL_name { get; set; }
-
-        public bookmarkDetails(string WebSite_URL, string Name_URL)
-        {
-            this.URL_bookmark = WebSite_URL;
-            this.URL_name = Name_URL;
+            obj.URL_Bookmark = urlWebsite_txtBox.Text;
+            obj.URL_Name = urlName_txtBox.Text;
+            result = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+            this.Close();
         }
     }
 }

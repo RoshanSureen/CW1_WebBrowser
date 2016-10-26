@@ -272,6 +272,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "HW_Browser";
             this.Text = "HW_Browser";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HW_Browser_FormClosing);
             this.Load += new System.EventHandler(this.HW_Browser_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

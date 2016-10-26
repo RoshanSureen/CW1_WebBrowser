@@ -29,6 +29,10 @@ namespace CW1_WebBrowser
 
         private RichTextBox newRich_TxtBox;
 
+        public List<bookmarkDetails> myList = new List<bookmarkDetails>();
+
+        favourites fav;
+
         public HW_Browser()
         {
             InitializeComponent();
@@ -266,14 +270,20 @@ namespace CW1_WebBrowser
             {
                 File.Create("home.txt");
             }
-            
-
+            string jsonSTRING = File.ReadAllText("bookmark.json");
+            myList = JsonConvert.DeserializeObject<List<bookmarkDetails>>(jsonSTRING);
         }
 
         private void bookmarkThisPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            favourites fav = new favourites();
+            fav = new favourites();
             fav.Show();
+        }
+
+        private void HW_Browser_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string data = JsonConvert.SerializeObject(myList);
+            File.WriteAllText("bookmark.json",data);
         }
     }
 }

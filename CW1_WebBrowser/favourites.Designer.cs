@@ -30,9 +30,9 @@
         {
             this.cancel_favForm = new System.Windows.Forms.Button();
             this.url_Website = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.urlWebsite_txtBox = new System.Windows.Forms.TextBox();
             this.url_Name = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.urlName_txtBox = new System.Windows.Forms.TextBox();
             this.saveBookamrkBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -55,12 +55,12 @@
             this.url_Website.TabIndex = 1;
             this.url_Website.Text = "URL of Website";
             // 
-            // textBox1
+            // urlWebsite_txtBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 32);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(450, 26);
-            this.textBox1.TabIndex = 2;
+            this.urlWebsite_txtBox.Location = new System.Drawing.Point(12, 32);
+            this.urlWebsite_txtBox.Name = "urlWebsite_txtBox";
+            this.urlWebsite_txtBox.Size = new System.Drawing.Size(450, 26);
+            this.urlWebsite_txtBox.TabIndex = 2;
             // 
             // url_Name
             // 
@@ -71,12 +71,12 @@
             this.url_Name.TabIndex = 3;
             this.url_Name.Text = "Name of your bookmark";
             // 
-            // textBox2
+            // urlName_txtBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(11, 110);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(450, 26);
-            this.textBox2.TabIndex = 4;
+            this.urlName_txtBox.Location = new System.Drawing.Point(11, 110);
+            this.urlName_txtBox.Name = "urlName_txtBox";
+            this.urlName_txtBox.Size = new System.Drawing.Size(450, 26);
+            this.urlName_txtBox.TabIndex = 4;
             // 
             // saveBookamrkBtn
             // 
@@ -86,6 +86,7 @@
             this.saveBookamrkBtn.TabIndex = 5;
             this.saveBookamrkBtn.Text = "Save";
             this.saveBookamrkBtn.UseVisualStyleBackColor = true;
+            this.saveBookamrkBtn.Click += new System.EventHandler(this.saveBookamrkBtn_Click);
             // 
             // favourites
             // 
@@ -93,9 +94,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(473, 189);
             this.Controls.Add(this.saveBookamrkBtn);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.urlName_txtBox);
             this.Controls.Add(this.url_Name);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.urlWebsite_txtBox);
             this.Controls.Add(this.url_Website);
             this.Controls.Add(this.cancel_favForm);
             this.MaximumSize = new System.Drawing.Size(495, 245);
@@ -111,9 +112,9 @@
 
         private System.Windows.Forms.Button cancel_favForm;
         private System.Windows.Forms.Label url_Website;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox urlWebsite_txtBox;
         private System.Windows.Forms.Label url_Name;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox urlName_txtBox;
         private System.Windows.Forms.Button saveBookamrkBtn;
     }
 }

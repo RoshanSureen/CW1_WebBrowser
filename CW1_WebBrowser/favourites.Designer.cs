@@ -65,7 +65,7 @@
             // url_Name
             // 
             this.url_Name.AutoSize = true;
-            this.url_Name.Location = new System.Drawing.Point(12, 61);
+            this.url_Name.Location = new System.Drawing.Point(12, 75);
             this.url_Name.Name = "url_Name";
             this.url_Name.Size = new System.Drawing.Size(177, 20);
             this.url_Name.TabIndex = 3;
@@ -73,7 +73,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 84);
+            this.textBox2.Location = new System.Drawing.Point(11, 110);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(450, 26);
             this.textBox2.TabIndex = 4;

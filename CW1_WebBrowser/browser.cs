@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.IO;
+using System.Net.Configuration;
 using System.Threading;
 using HtmlAgilityPack;
 
@@ -19,24 +20,18 @@ namespace CW1_WebBrowser
 {
     public partial class HW_Browser : Form
     {
-        private string url_Value { get; set; }
 
+        public string url_Value { get; set; }
         private TabPage currentTabPage { get; set; }
-
         private TabPage tb;
-
         private RichTextBox curRichTextBox { get; set; }
-
         private RichTextBox newRich_TxtBox;
-
-        //public List<bookmarkDetails> myList = new List<bookmarkDetails>();
-
         favourites fav;
 
         public HW_Browser()
         {
             InitializeComponent();
-            url_Value = "http://";
+            url_Value = "http://www.";
         }
 
         /// <summary>
@@ -96,6 +91,7 @@ namespace CW1_WebBrowser
             // using() is used to dispose the client object when it goes out of scope
             using (HttpClient client = new HttpClient())
             {
+                //HttpResponseMessage res = new HttpResponseMessage();
                 // the client will wait for the request to be completed and then store the response in object 'res'
                 using (HttpResponseMessage res = await client.GetAsync(url))
                 {
@@ -270,8 +266,6 @@ namespace CW1_WebBrowser
             {
                 File.Create("home.txt");
             }
-            //string jsonSTRING = File.ReadAllText("bookmark.json");
-            //myList = JsonConvert.DeserializeObject<List<bookmarkDetails>>(jsonSTRING);
         }
 
         private void bookmarkThisPageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -282,8 +276,6 @@ namespace CW1_WebBrowser
 
         private void HW_Browser_FormClosing(object sender, FormClosingEventArgs e)
         {
-            File.AppendAllText("bookmark.json", fav.result);
-
             MessageBox.Show("Goodbye!");
         }
     }

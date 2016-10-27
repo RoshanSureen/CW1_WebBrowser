@@ -35,6 +35,7 @@ namespace CW1_WebBrowser
             obj.URL_Bookmark = urlWebsite_txtBox.Text;
             obj.URL_Name = urlName_txtBox.Text;
             result = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+            File.AppendAllText("bookmark.json",result);
             this.Close();
         }
     }

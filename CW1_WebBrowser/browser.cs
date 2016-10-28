@@ -31,6 +31,7 @@ namespace CW1_WebBrowser
         public RichTextBox curRichTextBox { get; set; }
         public RichTextBox newRich_TxtBox;
         public favourites fav;
+        public ManageFavourites manageFav;
 
         public string url_Value;
 
@@ -276,7 +277,11 @@ namespace CW1_WebBrowser
 
         private void HW_Browser_FormClosing(object sender, FormClosingEventArgs e)
         {
-            bookmarkDictionary_fav = fav.GetDictionary();
+            if (bookmarkDictionary_fav != null)
+            {
+                bookmarkDictionary_fav = fav.GetDictionary();
+            }
+            
             bookmarkDictionary_browser = Dictionary_Get();
             if (bookmarkDictionary_browser == null)
             {
@@ -295,7 +300,8 @@ namespace CW1_WebBrowser
                 catch (ArgumentException exception)
                 {
                     
-                    throw exception;
+                    //throw exception;
+                    Console.WriteLine("error on line 303");
                 }
             }
             
@@ -304,7 +310,8 @@ namespace CW1_WebBrowser
 
         private void addToListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            manageFav = new ManageFavourites(bookmarkDictionary_browser);
+            manageFav.Show();
         }
     }
 }

@@ -38,10 +38,10 @@ namespace CW1_WebBrowser
             return dictionary;
         }
 
-        public void setDictionary(IDictionary<string, object> dict)
-        {
-            this.dictionary = dict;
-        }
+        //public void setDictionary(IDictionary<string, object> dict)
+        //{
+        //    this.dictionary = dict;
+        //}
 
         private void saveBookamrkBtn_Click(object sender, EventArgs e)
         {

@@ -16,6 +16,7 @@ using System.Dynamic;
 using System.Net.Configuration;
 using System.Threading;
 using HtmlAgilityPack;
+using Newtonsoft.Json.Linq;
 
 namespace CW1_WebBrowser
 {
@@ -25,20 +26,19 @@ namespace CW1_WebBrowser
         /// Objects of different control in the form
         /// </summary>
         public TabPage currentTabPage { get; set; }
+
         public TabPage tb;
         public RichTextBox curRichTextBox { get; set; }
         public RichTextBox newRich_TxtBox;
         public favourites fav;
 
-        /// <summary>
-        /// This is t
-        /// </summary>
         public string url_Value;
 
-        private IDictionary<string, object> bookmarkDictionary;
+        public IDictionary<string, object> bookmarkDictionary_fav;
+        public IDictionary<string, object> bookmarkDictionary_browser;
 
-        private string bookmarksFromFile;
-        
+        //private string bookmarksFromFile;
+
         public HW_Browser()
         {
             InitializeComponent();
@@ -114,16 +114,16 @@ namespace CW1_WebBrowser
                         catch (Exception e)
                         {
                             string errorCode = res.StatusCode.ToString();
-                            DisplayWebContent(e.Message,errorCode);
+                            DisplayWebContent(e.Message, errorCode);
                         }
                     }
                 }
             }
         }
 
-        
 
-        private void DisplayWebContent(string content,string title)
+
+        private void DisplayWebContent(string content, string title)
         {
             if (currentTabPage == null)
             {
@@ -150,15 +150,15 @@ namespace CW1_WebBrowser
                     {
                         if (control is RichTextBox)
                         {
-                            curRichTextBox = (RichTextBox)control;
+                            curRichTextBox = (RichTextBox) control;
                         }
                     }
                     currentTabPage.Text = title;
                     curRichTextBox.Text = content;
                 }
-                
-            }   
-            
+
+            }
+
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace CW1_WebBrowser
             //if the keyStroke was enter then Get_Request()
             if (e.KeyChar == (char) ConsoleKey.Enter)
             {
-                search_Btn_Click(null,null);
+                search_Btn_Click(null, null);
             }
         }
 
@@ -199,7 +199,7 @@ namespace CW1_WebBrowser
             MessageBox.Show("This website is your current home page!");
         }
 
-        
+
 
         /// <summary>
         /// This function runs when the new Tab button is clicked
@@ -244,8 +244,8 @@ namespace CW1_WebBrowser
         {
             tabControl1.TabPages.RemoveAt(tabControl1.SelectedIndex);
         }
-        
-        
+
+
 
         private void HW_Browser_Load(object sender, EventArgs e)
         {
@@ -259,10 +259,8 @@ namespace CW1_WebBrowser
             {
                 File.Create("home.txt");
             }
-            bookmarksFromFile = File.ReadAllText("bookmark.json");
-            bookmarkDictionary = JsonConvert.DeserializeObject<IDictionary<string, object>>(bookmarksFromFile);
-            fav = new favourites(null);
-            fav.setDictionary(bookmarkDictionary);
+            string bookmarksFromFile = File.ReadAllText("bookmark.json");
+            bookmarkDictionary_browser = JsonConvert.DeserializeObject<Dictionary<string, object>>(bookmarksFromFile);
         }
 
         private void bookmarkThisPageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -271,11 +269,36 @@ namespace CW1_WebBrowser
             fav.Show();
         }
 
+        public IDictionary<string, object> Dictionary_Get()
+        {
+            return bookmarkDictionary_browser;
+        }
+
         private void HW_Browser_FormClosing(object sender, FormClosingEventArgs e)
         {
-            bookmarkDictionary = fav.GetDictionary();
-            string result = JsonConvert.SerializeObject(bookmarkDictionary);  
-            File.AppendAllText("bookmark.json", result);
+            bookmarkDictionary_fav = fav.GetDictionary();
+            bookmarkDictionary_browser = Dictionary_Get();
+            if (bookmarkDictionary_browser == null)
+            {
+                string result = JsonConvert.SerializeObject(bookmarkDictionary_fav);
+                File.WriteAllText("bookmark.json", result);
+            }
+            else
+            {
+                try
+                {
+                    var newDictionary = bookmarkDictionary_browser.Concat(bookmarkDictionary_fav)
+                    .ToDictionary(x => x.Key, x => x.Value);
+                    string result = JsonConvert.SerializeObject(newDictionary);
+                    File.WriteAllText("bookmark.json", result);
+                }
+                catch (ArgumentException exception)
+                {
+                    
+                    throw exception;
+                }
+            }
+            
             MessageBox.Show("Goodbye!");
         }
 

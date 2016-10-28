@@ -11,13 +11,16 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using Newtonsoft.Json;
 using System.Dynamic;
+using Newtonsoft.Json.Converters;
 
 namespace CW1_WebBrowser
 {
     public partial class favourites : Form
     {
-        dynamic obj = new ExpandoObject();
         public string result;
+
+        public static dynamic bookmarkDetails = new ExpandoObject();
+        IDictionary<string,object> dictionary = (IDictionary<string, object>)bookmarkDetails;
 
         public favourites(string url)
         {
@@ -30,13 +33,28 @@ namespace CW1_WebBrowser
             this.Close();
         }
 
+        public IDictionary<string, object> GetDictionary()
+        {
+            return dictionary;
+        }
+
+        public void setDictionary(IDictionary<string, object> dict)
+        {
+            this.dictionary = dict;
+        }
+
         private void saveBookamrkBtn_Click(object sender, EventArgs e)
         {
-            obj.URL_Bookmark = urlWebsite_txtBox.Text;
-            obj.URL_Name = urlName_txtBox.Text;
-            result = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
-            File.AppendAllText("bookmark.json",result);
+            string name1 = urlWebsite_txtBox.Text;
+            string name2 = urlName_txtBox.Text;
+            
+            addBookmarkToFile(name1,name2);
             this.Close();
+        }
+
+        private void addBookmarkToFile(string urlToAdd, string urlNameToAdd)
+        {
+            dictionary.Add(urlToAdd,urlNameToAdd);
         }
     }
 }

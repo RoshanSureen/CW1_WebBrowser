@@ -133,6 +133,7 @@
             this.addToListToolStripMenuItem.Name = "addToListToolStripMenuItem";
             this.addToListToolStripMenuItem.Size = new System.Drawing.Size(256, 30);
             this.addToListToolStripMenuItem.Text = "Manage bookmarks";
+            this.addToListToolStripMenuItem.Click += new System.EventHandler(this.addToListToolStripMenuItem_Click);
             // 
             // bookmarkThisPageToolStripMenuItem
             // 

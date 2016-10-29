@@ -103,6 +103,7 @@
             this.MinimizeBox = false;
             this.Name = "favourites";
             this.Text = "favourites";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.favourites_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

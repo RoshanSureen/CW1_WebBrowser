@@ -19,16 +19,16 @@ namespace CW1_WebBrowser
     {
         public string result;
 
-        
+        private Action<IDictionary<string, object>> dictAction;
 
         public static dynamic bookmarkDetails = new ExpandoObject();
         IDictionary<string,object> dictionary = (IDictionary<string, object>)bookmarkDetails;
 
-        public favourites(string url)
+        public favourites(string url, Action<IDictionary<string, object>> dict)
         {
             InitializeComponent();
             urlWebsite_txtBox.Text = url;
-            
+            dictAction = dict;
         }
         
 
@@ -59,9 +59,9 @@ namespace CW1_WebBrowser
             this.Close();
         }
 
-        //private void favourites_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-        //    dictAction(dictionary);
-        //}
+        private void favourites_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            dictAction(dictionary);
+        }
     }
 }

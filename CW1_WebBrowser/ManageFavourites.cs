@@ -16,16 +16,18 @@ namespace CW1_WebBrowser
     public partial class ManageFavourites : Form
     {
         private Action<string> AddItems;
-        
+        private Action<IDictionary<string, object>> actionDict;
+
 
         private IDictionary<string, object> manageDictionary;
 
-        public ManageFavourites(IDictionary<string,object> listBoxDictionary,Action<string> itemsAction)
+        public ManageFavourites(IDictionary<string,object> listBoxDictionary,Action<string> itemsAction
+            , Action<IDictionary<string, object>> DictAction)
         {
             InitializeComponent();
             favourites_listBox.DataSource = new BindingSource(listBoxDictionary,null);
             AddItems = itemsAction;
-            
+            actionDict = DictAction;
             manageDictionary = listBoxDictionary;
         }
 
@@ -99,7 +101,7 @@ namespace CW1_WebBrowser
 
         private void ManageFavourites_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            actionDict(manageDictionary);
         }
     }
 }

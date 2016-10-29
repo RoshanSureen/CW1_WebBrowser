@@ -33,7 +33,7 @@ namespace CW1_WebBrowser
 
         public string url_Value;
 
-        public IDictionary<string, object> bookmarkDictionary_fav;
+        //public IDictionary<string, object> bookmarkDictionary_fav;
         public IDictionary<string, object> bookmarkDictionary_browser;
         
         public HW_Browser()
@@ -222,7 +222,7 @@ namespace CW1_WebBrowser
 
         private void bookmarkThisPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fav = new favourites(url_textBox.Text);
+            fav = new favourites(url_textBox.Text,Dictionary_Set);
             fav.Show();
         }
 
@@ -233,10 +233,11 @@ namespace CW1_WebBrowser
         }
 
 
-        //public void Dictionary_Set(IDictionary<string, object> Update_Dictionary)
-        //{
-        //    bookmarkDictionary_browser = bookmarkDictionary_browser.Concat(Update_Dictionary).ToDictionary(x => x.Key, x => x.Value);
-        //}
+        public void Dictionary_Set(IDictionary<string, object> Update_Dictionary)
+        {
+            //bookmarkDictionary_browser = bookmarkDictionary_browser.Concat(Update_Dictionary).ToDictionary(x => x.Key, x => x.Value);
+            bookmarkDictionary_browser = Update_Dictionary;
+        }
 
         public void OpenfavPage(string fav_URL)
         {
@@ -248,7 +249,7 @@ namespace CW1_WebBrowser
 
         private void addToListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            manageFav = new ManageFavourites(bookmarkDictionary_browser, OpenfavPage);
+            manageFav = new ManageFavourites(bookmarkDictionary_browser, OpenfavPage ,Dictionary_Set);
             manageFav.Show();
         }
 
@@ -272,24 +273,24 @@ namespace CW1_WebBrowser
 
         private void HW_Browser_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (bookmarkDictionary_fav == null)
-            {
-                bookmarkDictionary_fav = fav.GetDictionary();
-            }
+            //if (bookmarkDictionary_fav == null)
+            //{
+            //    bookmarkDictionary_fav = fav.GetDictionary();
+            //}
             
             bookmarkDictionary_browser = Dictionary_Get();
             if (bookmarkDictionary_browser == null)
             {
-                string result = JsonConvert.SerializeObject(bookmarkDictionary_fav);
+                string result = JsonConvert.SerializeObject(bookmarkDictionary_browser);
                 File.WriteAllText("bookmark.json", result);
             }
             else
             {
                 try
                 {
-                    var newDictionary = bookmarkDictionary_browser.Concat(bookmarkDictionary_fav)
-                    .ToDictionary(x => x.Key, x => x.Value);
-                    string result = JsonConvert.SerializeObject(newDictionary);
+                    //var newDictionary = bookmarkDictionary_browser.Concat(bookmarkDictionary_fav)
+                    //.ToDictionary(x => x.Key, x => x.Value);
+                    string result = JsonConvert.SerializeObject(bookmarkDictionary_browser);
                     File.WriteAllText("bookmark.json", result);
                 }
                 catch (ArgumentException exception)

@@ -27,22 +27,14 @@ namespace CW1_WebBrowser
             InitializeComponent();
             urlWebsite_txtBox.Text = url;
         }
-
-        private void cancel_favForm_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        
 
         public IDictionary<string, object> GetDictionary()
         {
             return dictionary;
         }
 
-        //public void setDictionary(IDictionary<string, object> dict)
-        //{
-        //    this.dictionary = dict;
-        //}
-
+        
         private void saveBookamrkBtn_Click(object sender, EventArgs e)
         {
             string name1 = urlWebsite_txtBox.Text;
@@ -52,9 +44,16 @@ namespace CW1_WebBrowser
             this.Close();
         }
 
+
         private void addBookmarkToFile(string urlToAdd, string urlNameToAdd)
         {
             dictionary.Add(urlToAdd,urlNameToAdd);
+        }
+
+
+        private void cancel_favForm_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -22,52 +22,25 @@ namespace CW1_WebBrowser
 {
     public partial class HW_Browser : Form
     {
-        /// <summary>
-        /// Objects of different control in the form
-        /// </summary>
         public TabPage currentTabPage { get; set; }
-
         public TabPage tb;
+
         public RichTextBox curRichTextBox { get; set; }
         public RichTextBox newRich_TxtBox;
+
         public favourites fav;
         public ManageFavourites manageFav;
 
         public string url_Value;
-
         public IDictionary<string, object> bookmarkDictionary_fav;
         public IDictionary<string, object> bookmarkDictionary_browser;
-
-
         
-
         public HW_Browser()
         {
             InitializeComponent();
             url_Value = "http://www.";
         }
         
-        /// <summary>
-        /// This function is used to exit from WinForm
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        /// <summary>
-        /// This function tells information about the web browser
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("This web browser is made by Roshan Sureen!" +
-                            "It sends an httpRequest and displays the httpResponse from the server, Also handles the httpResponse messages.");
-        }
-
         /// <summary>
         /// This function runs when the search btn is clicked
         /// </summary>
@@ -78,15 +51,7 @@ namespace CW1_WebBrowser
             string web_URL = url_textBox.Text;
             Get_Request(web_URL);
         }
-
-
-        public void OpenfavPage(string fav_URL)
-        {
-            AddTabPage();
-            url_textBox.Text = fav_URL;
-            Get_Request(fav_URL);
-        }
-
+        
         /// <summary>
         /// This function ensures that the http request and response run on their own thread
         /// </summary>
@@ -130,8 +95,7 @@ namespace CW1_WebBrowser
                 }
             }
         }
-
-
+        
 
         private void DisplayWebContent(string content, string title)
         {
@@ -210,7 +174,6 @@ namespace CW1_WebBrowser
         }
 
 
-
         /// <summary>
         /// This function runs when the new Tab button is clicked
         /// </summary>
@@ -256,6 +219,33 @@ namespace CW1_WebBrowser
         }
 
 
+        private void bookmarkThisPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fav = new favourites(url_textBox.Text);
+            fav.Show();
+        }
+
+
+        public IDictionary<string, object> Dictionary_Get()
+        {
+            return bookmarkDictionary_browser;
+        }
+
+
+        public void OpenfavPage(string fav_URL)
+        {
+            AddTabPage();
+            url_textBox.Text = fav_URL;
+            Get_Request(fav_URL);
+        }
+
+
+        private void addToListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            manageFav = new ManageFavourites(bookmarkDictionary_browser, OpenfavPage);
+            manageFav.Show();
+        }
+
 
         private void HW_Browser_Load(object sender, EventArgs e)
         {
@@ -273,16 +263,6 @@ namespace CW1_WebBrowser
             bookmarkDictionary_browser = JsonConvert.DeserializeObject<Dictionary<string, object>>(bookmarksFromFile);
         }
 
-        private void bookmarkThisPageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            fav = new favourites(url_textBox.Text);
-            fav.Show();
-        }
-
-        public IDictionary<string, object> Dictionary_Get()
-        {
-            return bookmarkDictionary_browser;
-        }
 
         private void HW_Browser_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -316,10 +296,25 @@ namespace CW1_WebBrowser
             MessageBox.Show("Goodbye!");
         }
 
-        private void addToListToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// This function tells information about the web browser
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            manageFav = new ManageFavourites(bookmarkDictionary_browser,OpenfavPage);
-            manageFav.Show();
+            MessageBox.Show("This web browser is made by Roshan Sureen!" +
+                            "It sends an httpRequest and displays the httpResponse from the server, Also handles the httpResponse messages.");
+        }
+
+        /// <summary>
+        /// This function is used to exit from WinForm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

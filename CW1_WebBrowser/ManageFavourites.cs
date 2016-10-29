@@ -16,7 +16,9 @@ namespace CW1_WebBrowser
     public partial class ManageFavourites : Form
     {
         private Action<string> AddItems;
+
         private IDictionary<string, object> manageDictionary;
+
         public ManageFavourites(IDictionary<string,object> listBoxDictionary,Action<string> itemsAction )
         {
             InitializeComponent();
@@ -76,13 +78,7 @@ namespace CW1_WebBrowser
             AddItems(urlToOpen);
             this.Close();
         }
-
-
-        private void ManageFavourites_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            string result = JsonConvert.SerializeObject(manageDictionary);
-            File.WriteAllText("bookmark.json", result);
-        }
+        
 
         private void RemoveFav_Click(object sender, EventArgs e)
         {
@@ -96,6 +92,13 @@ namespace CW1_WebBrowser
             {
                 manageDictionary.Remove(urlToRemove);
             }
+        }
+
+
+        private void ManageFavourites_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string result = JsonConvert.SerializeObject(manageDictionary);
+            File.WriteAllText("bookmark.json", result);
         }
     }
 }

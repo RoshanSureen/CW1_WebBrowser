@@ -321,11 +321,5 @@ namespace CW1_WebBrowser
             manageFav = new ManageFavourites(bookmarkDictionary_browser,OpenfavPage);
             manageFav.Show();
         }
-
-        private void listviewToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            listView LV = new listView();
-            LV.Show();
-        }
     }
 }

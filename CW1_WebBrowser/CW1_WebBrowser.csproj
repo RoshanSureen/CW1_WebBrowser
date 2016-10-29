@@ -76,12 +76,6 @@
     <Compile Include="favourites.Designer.cs">
       <DependentUpon>favourites.cs</DependentUpon>
     </Compile>
-    <Compile Include="listView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="listView.Designer.cs">
-      <DependentUpon>listView.cs</DependentUpon>
-    </Compile>
     <Compile Include="ManageFavourites.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,9 +89,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="favourites.resx">
       <DependentUpon>favourites.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="listView.resx">
-      <DependentUpon>listView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageFavourites.resx">
       <DependentUpon>ManageFavourites.cs</DependentUpon>

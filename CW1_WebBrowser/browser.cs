@@ -32,6 +32,7 @@ namespace CW1_WebBrowser
         public ManageFavourites manageFav;
 
         public string url_Value;
+
         public IDictionary<string, object> bookmarkDictionary_fav;
         public IDictionary<string, object> bookmarkDictionary_browser;
         
@@ -232,6 +233,11 @@ namespace CW1_WebBrowser
         }
 
 
+        //public void Dictionary_Set(IDictionary<string, object> Update_Dictionary)
+        //{
+        //    bookmarkDictionary_browser = bookmarkDictionary_browser.Concat(Update_Dictionary).ToDictionary(x => x.Key, x => x.Value);
+        //}
+
         public void OpenfavPage(string fav_URL)
         {
             AddTabPage();
@@ -266,7 +272,7 @@ namespace CW1_WebBrowser
 
         private void HW_Browser_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (bookmarkDictionary_fav != null)
+            if (bookmarkDictionary_fav == null)
             {
                 bookmarkDictionary_fav = fav.GetDictionary();
             }

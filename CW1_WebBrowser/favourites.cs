@@ -19,6 +19,8 @@ namespace CW1_WebBrowser
     {
         public string result;
 
+        
+
         public static dynamic bookmarkDetails = new ExpandoObject();
         IDictionary<string,object> dictionary = (IDictionary<string, object>)bookmarkDetails;
 
@@ -26,6 +28,7 @@ namespace CW1_WebBrowser
         {
             InitializeComponent();
             urlWebsite_txtBox.Text = url;
+            
         }
         
 
@@ -55,5 +58,10 @@ namespace CW1_WebBrowser
         {
             this.Close();
         }
+
+        //private void favourites_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+        //    dictAction(dictionary);
+        //}
     }
 }

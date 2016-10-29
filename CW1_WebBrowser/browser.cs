@@ -38,14 +38,15 @@ namespace CW1_WebBrowser
         public IDictionary<string, object> bookmarkDictionary_fav;
         public IDictionary<string, object> bookmarkDictionary_browser;
 
-        //private string bookmarksFromFile;
+
+        
 
         public HW_Browser()
         {
             InitializeComponent();
             url_Value = "http://www.";
         }
-
+        
         /// <summary>
         /// This function is used to exit from WinForm
         /// </summary>
@@ -76,6 +77,14 @@ namespace CW1_WebBrowser
         {
             string web_URL = url_textBox.Text;
             Get_Request(web_URL);
+        }
+
+
+        public void OpenfavPage(string fav_URL)
+        {
+            AddTabPage();
+            url_textBox.Text = fav_URL;
+            Get_Request(fav_URL);
         }
 
         /// <summary>
@@ -304,14 +313,19 @@ namespace CW1_WebBrowser
                     Console.WriteLine("error on line 303");
                 }
             }
-            
             MessageBox.Show("Goodbye!");
         }
 
         private void addToListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            manageFav = new ManageFavourites(bookmarkDictionary_browser);
+            manageFav = new ManageFavourites(bookmarkDictionary_browser,OpenfavPage);
             manageFav.Show();
+        }
+
+        private void listviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listView LV = new listView();
+            LV.Show();
         }
     }
 }

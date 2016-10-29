@@ -74,6 +74,7 @@
             this.openURL.TabIndex = 3;
             this.openURL.Text = "Open URL";
             this.openURL.UseVisualStyleBackColor = true;
+            this.openURL.Click += new System.EventHandler(this.openURL_Click);
             // 
             // closeManageFav
             // 

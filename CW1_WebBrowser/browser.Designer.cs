@@ -51,6 +51,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.closeTab_btn = new System.Windows.Forms.Button();
+            this.listviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,7 +124,8 @@
             // 
             this.favToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addToListToolStripMenuItem,
-            this.bookmarkThisPageToolStripMenuItem});
+            this.bookmarkThisPageToolStripMenuItem,
+            this.listviewToolStripMenuItem});
             this.favToolStripMenuItem.Name = "favToolStripMenuItem";
             this.favToolStripMenuItem.Size = new System.Drawing.Size(104, 29);
             this.favToolStripMenuItem.Text = "Favourites";
@@ -255,6 +257,13 @@
             this.closeTab_btn.UseVisualStyleBackColor = true;
             this.closeTab_btn.Click += new System.EventHandler(this.closeTab_btn_Click);
             // 
+            // listviewToolStripMenuItem
+            // 
+            this.listviewToolStripMenuItem.Name = "listviewToolStripMenuItem";
+            this.listviewToolStripMenuItem.Size = new System.Drawing.Size(256, 30);
+            this.listviewToolStripMenuItem.Text = "Listview";
+            this.listviewToolStripMenuItem.Click += new System.EventHandler(this.listviewToolStripMenuItem_Click);
+            // 
             // HW_Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -307,6 +316,7 @@
         private System.Windows.Forms.Button closeTab_btn;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editHomeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listviewToolStripMenuItem;
     }
 }
 

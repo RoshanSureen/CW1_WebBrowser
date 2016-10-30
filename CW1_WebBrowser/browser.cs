@@ -284,7 +284,7 @@ namespace CW1_WebBrowser
         }
 
         /// <summary>
-        /// 
+        /// sets the dictionary of browser class
         /// </summary>
         /// <param name="Update_Dictionary"></param>
         public void Dictionary_Set(IDictionary<string, object> Update_Dictionary)
@@ -292,6 +292,10 @@ namespace CW1_WebBrowser
             bookmarkDictionary_browser = Update_Dictionary;
         }
 
+        /// <summary>
+        /// This function opens a bookmark from favourite in a new tab
+        /// </summary>
+        /// <param name="fav_URL"></param>
         public void OpenfavPage(string fav_URL)
         {
             AddTabPage();
@@ -299,14 +303,22 @@ namespace CW1_WebBrowser
             Get_Request(fav_URL);
         }
 
-
+        /// <summary>
+        /// opens the manage favourite window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addToListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             manageFav = new ManageFavourites(bookmarkDictionary_browser, OpenfavPage, Dictionary_Set);
             manageFav.Show();
         }
 
-
+        /// <summary>
+        /// go back a page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void back_btn_Click(object sender, EventArgs e)
         {
             if (track_User_Histroy > 0)
@@ -324,7 +336,11 @@ namespace CW1_WebBrowser
             }
         }
 
-
+        /// <summary>
+        /// go to the next page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nextPage_btn_Click(object sender, EventArgs e)
         {
             if (track_User_Histroy < list_browser.Count-1)
@@ -339,18 +355,30 @@ namespace CW1_WebBrowser
             }
         }
 
+        /// <summary>
+        /// this function opens the manage history window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void viewHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ManageHistory = new ViewHistory(list_browser,OpenHistoryPage,setList_borwser);
             ManageHistory.Show();
         }
 
-
+        /// <summary>
+        /// returns browser class list
+        /// </summary>
+        /// <returns></returns>
         private List<string> getHistorylist()
         {
             return list_browser;
         }
 
+        /// <summary>
+        /// update the list of browser class
+        /// </summary>
+        /// <param name="setHistroyList"></param>
         private void setList_borwser(List<string> setHistroyList )
         {
             list_browser = setHistroyList;
@@ -359,23 +387,38 @@ namespace CW1_WebBrowser
             track_User_Histroy = list_browser.IndexOf(currentURLInList);
         }
 
+        /// <summary>
+        /// opens the history url in a new tab
+        /// </summary>
+        /// <param name="fav_URL"></param>
         public void OpenHistoryPage(string fav_URL)
         {
             AddTabPage();
             url_textBox.Text = fav_URL;
             Get_Request(fav_URL);
         }
-
+        
+        /// <summary>
+        /// the dictionary, list are initilized when the browser loads
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HW_Browser_Load(object sender, EventArgs e)
         {
             if (File.Exists("home.txt") && File.Exists("bookmark.json") && File.Exists("history.json"))
             {
                 homePage = File.ReadAllText("home.txt");
                 url_textBox.Text = homePage;
+
                 Get_Request(homePage);
+
                 string bookmarksFromFile = File.ReadAllText("bookmark.json");
+
+                //deserilization of content from json file 
                 bookmarkDictionary_browser = JsonConvert.DeserializeObject<Dictionary<string, object>>(bookmarksFromFile);
+
                 string historyFromFile = File.ReadAllText("history.json");
+
                 list_browser = JsonConvert.DeserializeObject<List<string>>(historyFromFile);
             }
             else
@@ -388,7 +431,11 @@ namespace CW1_WebBrowser
             
         }
 
-
+        /// <summary>
+        /// history and favourites are written to their respectuve files through json serialization when browser is closing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HW_Browser_FormClosing(object sender, FormClosingEventArgs e)
         {
             bookmarkDictionary_browser = Dictionary_Get();

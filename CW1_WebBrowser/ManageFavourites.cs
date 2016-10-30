@@ -15,12 +15,23 @@ namespace CW1_WebBrowser
 {
     public partial class ManageFavourites : Form
     {
+        /// <summary>
+        /// Delegates
+        /// </summary>
         private Action<string> AddItems;
         private Action<IDictionary<string, object>> actionDict;
 
-
+        /// <summary>
+        /// local dictionary is manupilated in this class
+        /// </summary>
         private IDictionary<string, object> manageDictionary;
 
+        /// <summary>
+        /// Constructor for Manage favourites
+        /// </summary>
+        /// <param name="listBoxDictionary"></param>
+        /// <param name="itemsAction"></param>
+        /// <param name="DictAction"></param>
         public ManageFavourites(IDictionary<string,object> listBoxDictionary,Action<string> itemsAction
             , Action<IDictionary<string, object>> DictAction)
         {
@@ -31,6 +42,11 @@ namespace CW1_WebBrowser
             manageDictionary = listBoxDictionary;
         }
 
+        /// <summary>
+        /// modify the name associated with url
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void edit_Name_Click(object sender, EventArgs e)
         {
             nameLabel.Visible = true;
@@ -40,7 +56,12 @@ namespace CW1_WebBrowser
             ConfirmChange.Enabled = true;
             
         }
-
+        
+        /// <summary>
+        /// sets the value for the associated key
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfirmChange_Click(object sender, EventArgs e)
         {
             string selectedValue = favourites_listBox.SelectedItem.ToString();
@@ -55,6 +76,11 @@ namespace CW1_WebBrowser
             }
         }
 
+        /// <summary>
+        /// update the favourites list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void update_Click(object sender, EventArgs e)
         {
             favourites_listBox.DataSource = new BindingSource(manageDictionary,null);
@@ -65,12 +91,22 @@ namespace CW1_WebBrowser
             ConfirmChange.Enabled = false;
         }
 
+        /// <summary>
+        /// Format how favourites are displayed on the listBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void favourites_listBox_Format(object sender, ListControlConvertEventArgs e)
         {
             KeyValuePair<string, object> item = (KeyValuePair<string, object>)e.ListItem;
             e.Value = string.Format("{0}\t({1})", item.Key, item.Value);
         }
 
+        /// <summary>
+        /// open favourites url in a new tab
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void openURL_Click(object sender, EventArgs e)
         {
             string urlToLoad = favourites_listBox.SelectedItem.ToString();
@@ -83,7 +119,11 @@ namespace CW1_WebBrowser
             this.Close();
         }
         
-
+        /// <summary>
+        /// Delete a bookmark from list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveFav_Click(object sender, EventArgs e)
         {
             string selectedValue = favourites_listBox.SelectedItem.ToString();
@@ -98,7 +138,11 @@ namespace CW1_WebBrowser
             }
         }
 
-
+        /// <summary>
+        /// send the dictionary to browser.cs
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ManageFavourites_FormClosing(object sender, FormClosingEventArgs e)
         {
             actionDict(manageDictionary);

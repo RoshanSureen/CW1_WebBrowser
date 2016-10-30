@@ -76,7 +76,6 @@
     <Compile Include="favourites.Designer.cs">
       <DependentUpon>favourites.cs</DependentUpon>
     </Compile>
-    <Compile Include="history.cs" />
     <Compile Include="ManageFavourites.cs">
       <SubType>Form</SubType>
     </Compile>

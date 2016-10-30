@@ -74,8 +74,11 @@ namespace CW1_WebBrowser
         {
             string web_URL = url_textBox.Text;
             Get_Request(web_URL);
-            history.addToList(url_textBox.Text);
-            setList_borwser(history.GetList());
+            
+            list_browser.Add(url_textBox.Text);
+            int historyCount = list_browser.Count;
+            string currentURLInList = list_browser[historyCount - 1];
+            track_User_Histroy = list_browser.IndexOf(currentURLInList);
         }
 
         /// <summary>
@@ -261,7 +264,7 @@ namespace CW1_WebBrowser
         }
 
         /// <summary>
-        /// This opens  
+        /// This allows the user to bookmark his site
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -271,13 +274,19 @@ namespace CW1_WebBrowser
             fav.Show();
         }
 
-
+        /// <summary>
+        /// retrun dictionary on browser class
+        /// </summary>
+        /// <returns></returns>
         public IDictionary<string, object> Dictionary_Get()
         {
             return bookmarkDictionary_browser;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Update_Dictionary"></param>
         public void Dictionary_Set(IDictionary<string, object> Update_Dictionary)
         {
             bookmarkDictionary_browser = Update_Dictionary;
@@ -318,7 +327,7 @@ namespace CW1_WebBrowser
 
         private void nextPage_btn_Click(object sender, EventArgs e)
         {
-            if (track_User_Histroy < list_browser.Count)
+            if (track_User_Histroy < list_browser.Count-1)
             {
                 Get_Request(list_browser[++track_User_Histroy]);
                 back_btn.Enabled = true;
@@ -402,6 +411,26 @@ namespace CW1_WebBrowser
                     Console.WriteLine("error on line 303");
                 }
             }
+            list_browser = getHistorylist();
+            if (list_browser == null)
+            {
+                string result = JsonConvert.SerializeObject(list_browser);
+                File.WriteAllText("history.json", result);
+            }
+            else
+            {
+                try
+                {
+                    string result = JsonConvert.SerializeObject(list_browser);
+                    File.WriteAllText("history.json", result);
+                }
+                catch (ArgumentException exception)
+                {
+
+                    //throw exception;
+                    Console.WriteLine("error on line 303");
+                }
+            }
             MessageBox.Show("Goodbye!");
         }
 
@@ -426,14 +455,6 @@ namespace CW1_WebBrowser
             this.Close();
         }
 
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            e.Result = 
-        }
-
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-
-        }
+        
     }
 }

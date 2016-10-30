@@ -28,23 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.HistoryListBox = new System.Windows.Forms.ListBox();
             this.OpenHistoryLinkBtn = new System.Windows.Forms.Button();
             this.closeViewHistory = new System.Windows.Forms.Button();
+            this.deleteBTn = new System.Windows.Forms.Button();
+            this.updateBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listBox1
+            // HistoryListBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(1, 0);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(875, 404);
-            this.listBox1.TabIndex = 0;
+            this.HistoryListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.HistoryListBox.FormattingEnabled = true;
+            this.HistoryListBox.ItemHeight = 20;
+            this.HistoryListBox.Location = new System.Drawing.Point(12, 6);
+            this.HistoryListBox.Name = "HistoryListBox";
+            this.HistoryListBox.Size = new System.Drawing.Size(875, 404);
+            this.HistoryListBox.TabIndex = 0;
             // 
             // OpenHistoryLinkBtn
             // 
-            this.OpenHistoryLinkBtn.Location = new System.Drawing.Point(244, 416);
+            this.OpenHistoryLinkBtn.Location = new System.Drawing.Point(320, 416);
             this.OpenHistoryLinkBtn.Name = "OpenHistoryLinkBtn";
             this.OpenHistoryLinkBtn.Size = new System.Drawing.Size(132, 52);
             this.OpenHistoryLinkBtn.TabIndex = 1;
@@ -54,31 +58,57 @@
             // 
             // closeViewHistory
             // 
-            this.closeViewHistory.Location = new System.Drawing.Point(456, 416);
+            this.closeViewHistory.Location = new System.Drawing.Point(734, 416);
             this.closeViewHistory.Name = "closeViewHistory";
             this.closeViewHistory.Size = new System.Drawing.Size(132, 52);
             this.closeViewHistory.TabIndex = 2;
             this.closeViewHistory.Text = "Close Window";
             this.closeViewHistory.UseVisualStyleBackColor = true;
+            this.closeViewHistory.Click += new System.EventHandler(this.closeViewHistory_Click);
+            // 
+            // deleteBTn
+            // 
+            this.deleteBTn.Location = new System.Drawing.Point(596, 416);
+            this.deleteBTn.Name = "deleteBTn";
+            this.deleteBTn.Size = new System.Drawing.Size(132, 52);
+            this.deleteBTn.TabIndex = 3;
+            this.deleteBTn.Text = "Delete URL";
+            this.deleteBTn.UseVisualStyleBackColor = true;
+            this.deleteBTn.Click += new System.EventHandler(this.deleteBTn_Click);
+            // 
+            // updateBtn
+            // 
+            this.updateBtn.Location = new System.Drawing.Point(458, 416);
+            this.updateBtn.Name = "updateBtn";
+            this.updateBtn.Size = new System.Drawing.Size(132, 52);
+            this.updateBtn.TabIndex = 4;
+            this.updateBtn.Text = "Update";
+            this.updateBtn.UseVisualStyleBackColor = true;
+            this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);
             // 
             // ViewHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 474);
+            this.Controls.Add(this.updateBtn);
+            this.Controls.Add(this.deleteBTn);
             this.Controls.Add(this.closeViewHistory);
             this.Controls.Add(this.OpenHistoryLinkBtn);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.HistoryListBox);
             this.Name = "ViewHistory";
             this.Text = "ViewHistory";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ViewHistory_FormClosing);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox HistoryListBox;
         private System.Windows.Forms.Button OpenHistoryLinkBtn;
         private System.Windows.Forms.Button closeViewHistory;
+        private System.Windows.Forms.Button deleteBTn;
+        private System.Windows.Forms.Button updateBtn;
     }
 }

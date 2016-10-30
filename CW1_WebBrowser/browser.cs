@@ -22,20 +22,40 @@ namespace CW1_WebBrowser
 {
     public partial class HW_Browser : Form
     {
-        public TabPage currentTabPage { get; set; }
+        /// <summary>
+        /// object instances of different controls
+        /// </summary>
         public TabPage tb;
-
-        public RichTextBox curRichTextBox { get; set; }
         public RichTextBox newRich_TxtBox;
 
+        /// <summary>
+        /// Keep track of the current selected tab
+        /// </summary>
+        public TabPage currentTabPage { get; set; }
+        public RichTextBox curRichTextBox { get; set; }
+
+        /// <summary>
+        /// class instances
+        /// </summary>
         public favourites fav;
         public ManageFavourites manageFav;
+        public ViewHistory ManageHistory;
 
         public string url_Value;
         public static int track_User_Histroy;
+        public static string homePage;
 
+        /// <summary>
+        /// This dictionary is manupilated during the browser session for favourites
+        /// </summary>
         public IDictionary<string, object> bookmarkDictionary_browser;
+
+        /// <summary>
+        /// This list keeps track of the user's history 
+        /// </summary>
         private static List<string> list_browser = new List<string>();
+
+
         /// <summary>
         /// Initilizer for browser class
         /// </summary>
@@ -44,7 +64,7 @@ namespace CW1_WebBrowser
             InitializeComponent();
             url_Value = "http://www.";
         }
-        
+
         /// <summary>
         /// This function runs when the search btn is clicked
         /// </summary>
@@ -55,6 +75,7 @@ namespace CW1_WebBrowser
             string web_URL = url_textBox.Text;
             Get_Request(web_URL);
             history.addToList(url_textBox.Text);
+            setList_borwser(history.GetList());
         }
 
         /// <summary>
@@ -78,6 +99,7 @@ namespace CW1_WebBrowser
                             {
                                 string webContent = await content.ReadAsStringAsync();
 
+                                //This part of the code is responsible for getting the title of the page from the HTML page
                                 HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
                                 htmlDoc.OptionFixNestedTags = true;
 
@@ -85,6 +107,8 @@ namespace CW1_WebBrowser
 
                                 var tab_header = htmlDoc.DocumentNode.SelectSingleNode("//head/title");
                                 string titleFromPage = WebUtility.HtmlDecode(tab_header.InnerText.Trim());
+
+                                //The response and the title from the HTML page are sent to this function
                                 DisplayWebContent(webContent, titleFromPage);
                             }
                         }
@@ -92,15 +116,11 @@ namespace CW1_WebBrowser
                         {
                             try
                             {
+                                //Throws an exception if the IsSuccessStatusCode property for the HTTP response is false
                                 res.EnsureSuccessStatusCode();
                             }
                             catch (Exception e)
                             {
-                                if (res.StatusCode == HttpStatusCode.BadRequest)
-                                {
-                                    string badrequest = res.StatusCode.ToString();
-                                    DisplayWebContent(e.Message, badrequest);
-                                }
                                 string errorCode = res.StatusCode.ToString();
                                 DisplayWebContent(e.Message, errorCode);
                             }
@@ -113,8 +133,12 @@ namespace CW1_WebBrowser
                 }
             }
         }
-        
 
+        /// <summary>
+        /// This is the core function that sets up the tabpage and rich textbox within the browser form to display the content
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="title"></param>
         private void DisplayWebContent(string content, string title)
         {
             if (currentTabPage == null)
@@ -142,7 +166,7 @@ namespace CW1_WebBrowser
                     {
                         if (control is RichTextBox)
                         {
-                            curRichTextBox = (RichTextBox) control;
+                            curRichTextBox = (RichTextBox)control;
                         }
                     }
                     currentTabPage.Text = title;
@@ -161,10 +185,11 @@ namespace CW1_WebBrowser
         private void url_textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             //if the keyStroke was enter then Get_Request()
-            if (e.KeyChar == (char) ConsoleKey.Enter)
+            if (e.KeyChar == (char)ConsoleKey.Enter)
             {
                 search_Btn_Click(null, null);
             }
+            back_btn.Enabled = true;
         }
 
         /// <summary>
@@ -223,7 +248,6 @@ namespace CW1_WebBrowser
             {
                 url_textBox.Text = url_Value;
             }
-
         }
 
         /// <summary>
@@ -236,10 +260,14 @@ namespace CW1_WebBrowser
             tabControl1.TabPages.RemoveAt(tabControl1.SelectedIndex);
         }
 
-
+        /// <summary>
+        /// This opens  
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bookmarkThisPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fav = new favourites(url_textBox.Text,Dictionary_Set);
+            fav = new favourites(url_textBox.Text, Dictionary_Set);
             fav.Show();
         }
 
@@ -265,63 +293,95 @@ namespace CW1_WebBrowser
 
         private void addToListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            manageFav = new ManageFavourites(bookmarkDictionary_browser, OpenfavPage ,Dictionary_Set);
+            manageFav = new ManageFavourites(bookmarkDictionary_browser, OpenfavPage, Dictionary_Set);
             manageFav.Show();
         }
 
-        
+
         private void back_btn_Click(object sender, EventArgs e)
         {
-            //Get_Request(list_browser[track_User_Histroy--]);
-            foreach (var element in list_browser)
+            if (track_User_Histroy > 0)
             {
-                Get_Request(list_browser[track_User_Histroy--]);
+                string url = list_browser[--track_User_Histroy];
+                url_textBox.Text = url;
+                Get_Request(url);
+                nextPage_btn.Enabled = true;
+            }
+            else
+            {
+                Get_Request(homePage);
+                back_btn.Enabled = false;
+                nextPage_btn.Enabled = true;
             }
         }
 
 
         private void nextPage_btn_Click(object sender, EventArgs e)
         {
-            //track_User_Histroy++;
-            //string urlFromHistroy = list_browser[track_User_Histroy];
-            Get_Request(list_browser[track_User_Histroy++]);
+            if (track_User_Histroy < list_browser.Count)
+            {
+                Get_Request(list_browser[++track_User_Histroy]);
+                back_btn.Enabled = true;
+            }
+            else
+            {
+                nextPage_btn.Enabled = false;
+                back_btn.Enabled = true;
+            }
+        }
+
+        private void viewHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageHistory = new ViewHistory(list_browser,OpenHistoryPage,setList_borwser);
+            ManageHistory.Show();
         }
 
 
-        private void setList_borwser(List<string> list)
+        private List<string> getHistorylist()
         {
-            list_browser = history.GetList();
+            return list_browser;
+        }
+
+        private void setList_borwser(List<string> setHistroyList )
+        {
+            list_browser = setHistroyList;
             int historyCount = list_browser.Count;
             string currentURLInList = list_browser[historyCount - 1];
             track_User_Histroy = list_browser.IndexOf(currentURLInList);
-
         }
 
+        public void OpenHistoryPage(string fav_URL)
+        {
+            AddTabPage();
+            url_textBox.Text = fav_URL;
+            Get_Request(fav_URL);
+        }
 
         private void HW_Browser_Load(object sender, EventArgs e)
         {
-            if (File.Exists("home.txt"))
+            if (File.Exists("home.txt") && File.Exists("bookmark.json") && File.Exists("history.json"))
             {
-                string homePage = File.ReadAllText("home.txt");
+                homePage = File.ReadAllText("home.txt");
                 url_textBox.Text = homePage;
                 Get_Request(homePage);
+                string bookmarksFromFile = File.ReadAllText("bookmark.json");
+                bookmarkDictionary_browser = JsonConvert.DeserializeObject<Dictionary<string, object>>(bookmarksFromFile);
+                string historyFromFile = File.ReadAllText("history.json");
+                list_browser = JsonConvert.DeserializeObject<List<string>>(historyFromFile);
             }
             else
             {
                 File.Create("home.txt");
+                File.Create("bookmark.json");
+                File.Create("history.json");
             }
-            string bookmarksFromFile = File.ReadAllText("bookmark.json");
-            bookmarkDictionary_browser = JsonConvert.DeserializeObject<Dictionary<string, object>>(bookmarksFromFile);
+            
+            
         }
 
 
         private void HW_Browser_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //if (bookmarkDictionary_fav == null)
-            //{
-            //    bookmarkDictionary_fav = fav.GetDictionary();
-            //}
-            
             bookmarkDictionary_browser = Dictionary_Get();
             if (bookmarkDictionary_browser == null)
             {
@@ -332,14 +392,12 @@ namespace CW1_WebBrowser
             {
                 try
                 {
-                    //var newDictionary = bookmarkDictionary_browser.Concat(bookmarkDictionary_fav)
-                    //.ToDictionary(x => x.Key, x => x.Value);
                     string result = JsonConvert.SerializeObject(bookmarkDictionary_browser);
                     File.WriteAllText("bookmark.json", result);
                 }
                 catch (ArgumentException exception)
                 {
-                    
+
                     //throw exception;
                     Console.WriteLine("error on line 303");
                 }
@@ -366,6 +424,16 @@ namespace CW1_WebBrowser
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            e.Result = 
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
         }
     }
 }

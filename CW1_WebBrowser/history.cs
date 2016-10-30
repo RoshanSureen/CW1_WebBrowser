@@ -11,8 +11,6 @@ namespace CW1_WebBrowser
     {
         public static List<String> historyList = new List<string>();
 
-        //public static int trackHistory;
-
         
         public static void addToList(string historyURL)
         {

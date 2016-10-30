@@ -35,10 +35,9 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.historyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.favToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addToListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bookmarkThisPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +50,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.closeTab_btn = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,8 +101,7 @@
             // historyToolStripMenuItem
             // 
             this.historyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewHistoryToolStripMenuItem,
-            this.deleteHistoryToolStripMenuItem});
+            this.viewHistoryToolStripMenuItem});
             this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
             this.historyToolStripMenuItem.Size = new System.Drawing.Size(81, 29);
             this.historyToolStripMenuItem.Text = "History";
@@ -110,30 +109,18 @@
             // viewHistoryToolStripMenuItem
             // 
             this.viewHistoryToolStripMenuItem.Name = "viewHistoryToolStripMenuItem";
-            this.viewHistoryToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
-            this.viewHistoryToolStripMenuItem.Text = "View History";
-            // 
-            // deleteHistoryToolStripMenuItem
-            // 
-            this.deleteHistoryToolStripMenuItem.Name = "deleteHistoryToolStripMenuItem";
-            this.deleteHistoryToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
-            this.deleteHistoryToolStripMenuItem.Text = "Delete History";
+            this.viewHistoryToolStripMenuItem.Size = new System.Drawing.Size(233, 30);
+            this.viewHistoryToolStripMenuItem.Text = "View/edit History";
+            this.viewHistoryToolStripMenuItem.Click += new System.EventHandler(this.viewHistoryToolStripMenuItem_Click);
             // 
             // favToolStripMenuItem
             // 
             this.favToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToListToolStripMenuItem,
-            this.bookmarkThisPageToolStripMenuItem});
+            this.bookmarkThisPageToolStripMenuItem,
+            this.addToListToolStripMenuItem});
             this.favToolStripMenuItem.Name = "favToolStripMenuItem";
             this.favToolStripMenuItem.Size = new System.Drawing.Size(104, 29);
             this.favToolStripMenuItem.Text = "Favourites";
-            // 
-            // addToListToolStripMenuItem
-            // 
-            this.addToListToolStripMenuItem.Name = "addToListToolStripMenuItem";
-            this.addToListToolStripMenuItem.Size = new System.Drawing.Size(256, 30);
-            this.addToListToolStripMenuItem.Text = "Manage bookmarks";
-            this.addToListToolStripMenuItem.Click += new System.EventHandler(this.addToListToolStripMenuItem_Click);
             // 
             // bookmarkThisPageToolStripMenuItem
             // 
@@ -141,6 +128,13 @@
             this.bookmarkThisPageToolStripMenuItem.Size = new System.Drawing.Size(256, 30);
             this.bookmarkThisPageToolStripMenuItem.Text = "Bookmark this page";
             this.bookmarkThisPageToolStripMenuItem.Click += new System.EventHandler(this.bookmarkThisPageToolStripMenuItem_Click);
+            // 
+            // addToListToolStripMenuItem
+            // 
+            this.addToListToolStripMenuItem.Name = "addToListToolStripMenuItem";
+            this.addToListToolStripMenuItem.Size = new System.Drawing.Size(256, 30);
+            this.addToListToolStripMenuItem.Text = "Manage bookmarks";
+            this.addToListToolStripMenuItem.Click += new System.EventHandler(this.addToListToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -177,6 +171,7 @@
             // 
             // back_btn
             // 
+            this.back_btn.Enabled = false;
             this.back_btn.Location = new System.Drawing.Point(12, 36);
             this.back_btn.Name = "back_btn";
             this.back_btn.Size = new System.Drawing.Size(45, 35);
@@ -187,6 +182,7 @@
             // 
             // nextPage_btn
             // 
+            this.nextPage_btn.Enabled = false;
             this.nextPage_btn.Location = new System.Drawing.Point(63, 36);
             this.nextPage_btn.Name = "nextPage_btn";
             this.nextPage_btn.Size = new System.Drawing.Size(45, 35);
@@ -257,6 +253,11 @@
             this.closeTab_btn.UseVisualStyleBackColor = true;
             this.closeTab_btn.Click += new System.EventHandler(this.closeTab_btn_Click);
             // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
             // HW_Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -293,7 +294,6 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem historyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewHistoryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteHistoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem favToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bookmarkThisPageToolStripMenuItem;
@@ -309,6 +309,7 @@
         private System.Windows.Forms.Button closeTab_btn;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editHomeToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

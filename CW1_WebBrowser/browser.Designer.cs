@@ -183,6 +183,7 @@
             this.back_btn.TabIndex = 2;
             this.back_btn.Text = "<<";
             this.back_btn.UseVisualStyleBackColor = true;
+            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
             // 
             // nextPage_btn
             // 
@@ -192,6 +193,7 @@
             this.nextPage_btn.TabIndex = 3;
             this.nextPage_btn.Text = ">>";
             this.nextPage_btn.UseVisualStyleBackColor = true;
+            this.nextPage_btn.Click += new System.EventHandler(this.nextPage_btn_Click);
             // 
             // home_Btn
             // 

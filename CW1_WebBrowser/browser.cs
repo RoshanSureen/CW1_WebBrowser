@@ -32,10 +32,13 @@ namespace CW1_WebBrowser
         public ManageFavourites manageFav;
 
         public string url_Value;
+        public static int track_User_Histroy;
 
-        //public IDictionary<string, object> bookmarkDictionary_fav;
         public IDictionary<string, object> bookmarkDictionary_browser;
-        
+        private static List<string> list_browser = new List<string>();
+        /// <summary>
+        /// Initilizer for browser class
+        /// </summary>
         public HW_Browser()
         {
             InitializeComponent();
@@ -51,8 +54,9 @@ namespace CW1_WebBrowser
         {
             string web_URL = url_textBox.Text;
             Get_Request(web_URL);
+            history.addToList(url_textBox.Text);
         }
-        
+
         /// <summary>
         /// This function ensures that the http request and response run on their own thread
         /// </summary>
@@ -62,37 +66,50 @@ namespace CW1_WebBrowser
             // using() is used to dispose the client object when it goes out of scope
             using (HttpClient client = new HttpClient())
             {
-                // the client will wait for the request to be completed and then store the response in object 'res'
-                using (HttpResponseMessage res = await client.GetAsync(url))
+
+                try
                 {
-                    if (res.IsSuccessStatusCode)
+                    // the client will wait for the request to be completed and then store the response in object 'res'
+                    using (HttpResponseMessage res = await client.GetAsync(url))
                     {
-                        using (HttpContent content = res.Content)
+                        if (res.IsSuccessStatusCode)
                         {
-                            string webContent = await content.ReadAsStringAsync();
+                            using (HttpContent content = res.Content)
+                            {
+                                string webContent = await content.ReadAsStringAsync();
 
-                            HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
-                            htmlDoc.OptionFixNestedTags = true;
+                                HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
+                                htmlDoc.OptionFixNestedTags = true;
 
-                            htmlDoc.LoadHtml(webContent);
+                                htmlDoc.LoadHtml(webContent);
 
-                            var tab_header = htmlDoc.DocumentNode.SelectSingleNode("//head/title");
-                            string titleFromPage = WebUtility.HtmlDecode(tab_header.InnerText.Trim());
-                            DisplayWebContent(webContent, titleFromPage);
+                                var tab_header = htmlDoc.DocumentNode.SelectSingleNode("//head/title");
+                                string titleFromPage = WebUtility.HtmlDecode(tab_header.InnerText.Trim());
+                                DisplayWebContent(webContent, titleFromPage);
+                            }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                res.EnsureSuccessStatusCode();
+                            }
+                            catch (Exception e)
+                            {
+                                if (res.StatusCode == HttpStatusCode.BadRequest)
+                                {
+                                    string badrequest = res.StatusCode.ToString();
+                                    DisplayWebContent(e.Message, badrequest);
+                                }
+                                string errorCode = res.StatusCode.ToString();
+                                DisplayWebContent(e.Message, errorCode);
+                            }
                         }
                     }
-                    else
-                    {
-                        try
-                        {
-                            res.EnsureSuccessStatusCode();
-                        }
-                        catch (Exception e)
-                        {
-                            string errorCode = res.StatusCode.ToString();
-                            DisplayWebContent(e.Message, errorCode);
-                        }
-                    }
+                }
+                catch (Exception e)
+                {
+                    DisplayWebContent(e.Message, "bad request");
                 }
             }
         }
@@ -235,7 +252,6 @@ namespace CW1_WebBrowser
 
         public void Dictionary_Set(IDictionary<string, object> Update_Dictionary)
         {
-            //bookmarkDictionary_browser = bookmarkDictionary_browser.Concat(Update_Dictionary).ToDictionary(x => x.Key, x => x.Value);
             bookmarkDictionary_browser = Update_Dictionary;
         }
 
@@ -251,6 +267,34 @@ namespace CW1_WebBrowser
         {
             manageFav = new ManageFavourites(bookmarkDictionary_browser, OpenfavPage ,Dictionary_Set);
             manageFav.Show();
+        }
+
+        
+        private void back_btn_Click(object sender, EventArgs e)
+        {
+            //Get_Request(list_browser[track_User_Histroy--]);
+            foreach (var element in list_browser)
+            {
+                Get_Request(list_browser[track_User_Histroy--]);
+            }
+        }
+
+
+        private void nextPage_btn_Click(object sender, EventArgs e)
+        {
+            //track_User_Histroy++;
+            //string urlFromHistroy = list_browser[track_User_Histroy];
+            Get_Request(list_browser[track_User_Histroy++]);
+        }
+
+
+        private void setList_borwser(List<string> list)
+        {
+            list_browser = history.GetList();
+            int historyCount = list_browser.Count;
+            string currentURLInList = list_browser[historyCount - 1];
+            track_User_Histroy = list_browser.IndexOf(currentURLInList);
+
         }
 
 

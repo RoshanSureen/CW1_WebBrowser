@@ -23,7 +23,7 @@ namespace CW1_WebBrowser
 
         public static dynamic bookmarkDetails = new ExpandoObject();
         IDictionary<string,object> dictionary = (IDictionary<string, object>)bookmarkDetails;
-
+        
         public favourites(string url, Action<IDictionary<string, object>> dict)
         {
             InitializeComponent();
